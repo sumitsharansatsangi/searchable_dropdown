@@ -63,11 +63,6 @@ class TextFieldProps extends BaseTextFieldProps {
   final bool? ignorePointers;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final TapRegionCallback? onTapOutside;
-  @Deprecated(
-    'Use `stylusHandwritingEnabled` instead. '
-    'This feature was deprecated after v3.27.0-0.2.pre.',
-  )
-  final bool scribbleEnabled;
   final bool stylusHandwritingEnabled;
   final UndoHistoryController? undoController;
   final SpellCheckConfiguration? spellCheckConfiguration;
@@ -142,7 +137,6 @@ class TextFieldProps extends BaseTextFieldProps {
     this.ignorePointers,
     this.magnifierConfiguration,
     this.onTapOutside,
-    this.scribbleEnabled = true,
     this.stylusHandwritingEnabled =
         EditableText.defaultStylusHandwritingEnabled,
     this.spellCheckConfiguration,

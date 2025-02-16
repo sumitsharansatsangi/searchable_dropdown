@@ -71,11 +71,6 @@ class CupertinoTextFieldProps extends BaseTextFieldProps {
   final bool cursorOpacityAnimates;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final TapRegionCallback? onTapOutside;
-  @Deprecated(
-    'Use `stylusHandwritingEnabled` instead. '
-    'This feature was deprecated after v3.27.0-0.2.pre.',
-  )
-  final bool scribbleEnabled;
   final bool stylusHandwritingEnabled;
   final TapRegionCallback? onTapUpOutside;
   final CrossAxisAlignment crossAxisAlignment;
@@ -164,7 +159,6 @@ class CupertinoTextFieldProps extends BaseTextFieldProps {
     this.cursorOpacityAnimates = true,
     this.magnifierConfiguration,
     this.onTapOutside,
-    this.scribbleEnabled = true,
     this.spellCheckConfiguration,
     this.undoController,
     this.stylusHandwritingEnabled =

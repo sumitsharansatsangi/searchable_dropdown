@@ -64,7 +64,6 @@ class CustomCupertinoTextFields extends StatelessWidget {
       cursorOpacityAnimates: props.cursorOpacityAnimates,
       magnifierConfiguration: props.magnifierConfiguration,
       onTapOutside: props.onTapOutside,
-      scribbleEnabled: props.scribbleEnabled,
       stylusHandwritingEnabled: props.stylusHandwritingEnabled,
       onTapUpOutside: props.onTapUpOutside,
       crossAxisAlignment: props.crossAxisAlignment,
