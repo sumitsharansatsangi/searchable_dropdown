@@ -71,7 +71,14 @@ class CupertinoTextFieldProps extends BaseTextFieldProps {
   final bool cursorOpacityAnimates;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final TapRegionCallback? onTapOutside;
+  @Deprecated(
+    'Use `stylusHandwritingEnabled` instead. '
+    'This feature was deprecated after v3.27.0-0.2.pre.',
+  )
   final bool scribbleEnabled;
+  final bool stylusHandwritingEnabled;
+  final TapRegionCallback? onTapUpOutside;
+  final CrossAxisAlignment crossAxisAlignment;
   final UndoHistoryController? undoController;
   final SpellCheckConfiguration? spellCheckConfiguration;
   final ValueChanged<String>? onSelected;
@@ -160,6 +167,10 @@ class CupertinoTextFieldProps extends BaseTextFieldProps {
     this.scribbleEnabled = true,
     this.spellCheckConfiguration,
     this.undoController,
+    this.stylusHandwritingEnabled =
+        EditableText.defaultStylusHandwritingEnabled,
+    this.onTapUpOutside,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
   });
 
   static Widget _defaultContextMenuBuilder(

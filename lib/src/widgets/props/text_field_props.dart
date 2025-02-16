@@ -63,7 +63,12 @@ class TextFieldProps extends BaseTextFieldProps {
   final bool? ignorePointers;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final TapRegionCallback? onTapOutside;
+  @Deprecated(
+    'Use `stylusHandwritingEnabled` instead. '
+    'This feature was deprecated after v3.27.0-0.2.pre.',
+  )
   final bool scribbleEnabled;
+  final bool stylusHandwritingEnabled;
   final UndoHistoryController? undoController;
   final SpellCheckConfiguration? spellCheckConfiguration;
   final ValueChanged<String>? onSelected;
@@ -71,6 +76,7 @@ class TextFieldProps extends BaseTextFieldProps {
   final ValueChanged<String>? onSubmitted;
   final bool onTapAlwaysCalled;
   final Object groupId;
+  final TapRegionUpCallback? onTapUpOutside;
 
   const TextFieldProps({
     this.groupId = EditableText,
@@ -137,8 +143,11 @@ class TextFieldProps extends BaseTextFieldProps {
     this.magnifierConfiguration,
     this.onTapOutside,
     this.scribbleEnabled = true,
+    this.stylusHandwritingEnabled =
+        EditableText.defaultStylusHandwritingEnabled,
     this.spellCheckConfiguration,
     this.undoController,
+    this.onTapUpOutside,
   });
 
   static Widget _defaultContextMenuBuilder(

@@ -73,8 +73,10 @@ class CustomTextFields extends StatelessWidget {
       magnifierConfiguration: props.magnifierConfiguration,
       onTapOutside: props.onTapOutside,
       scribbleEnabled: props.scribbleEnabled,
+      stylusHandwritingEnabled: props.stylusHandwritingEnabled,
       undoController: props.undoController,
       spellCheckConfiguration: props.spellCheckConfiguration,
+      onTapUpOutside: props.onTapUpOutside,
     );
   }
 }
