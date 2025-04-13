@@ -676,16 +676,8 @@ class DropdownSearchState<T> extends State<BaseDropdownSearch<T>> {
     }
 
     Widget? getDropdownButton() {
-      final dropDownButton = widget.suffixProps.dropdownButtonProps ??
-          DropdownButtonProps(
-            animationBuilder: (child, isOpen) {
-              return AnimatedRotation(
-                turns: isOpen ? .5 : 1,
-                duration: Duration(milliseconds: 300),
-                child: child,
-              );
-            },
-          );
+      final dropDownButton =
+          widget.suffixProps.dropdownButtonProps ?? DropdownButtonProps();
       if (!dropDownButton.isVisible) return null;
 
       //icon required
@@ -705,11 +697,7 @@ class DropdownSearchState<T> extends State<BaseDropdownSearch<T>> {
         onPressed: () => toggleDropDownSearch(),
       );
 
-      if (dropDownButton.animationBuilder != null) {
-        return dropDownButton.animationBuilder!(button, isFocused);
-      }
-
-      return button;
+      return dropDownButton.animationBuilder(button, isFocused);
     }
 
     final dropdownButton = getDropdownButton();
