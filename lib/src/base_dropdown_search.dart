@@ -10,6 +10,7 @@ import 'package:dropdown_search/src/widgets/custom_chip.dart';
 import 'package:dropdown_search/src/widgets/custom_icon_button.dart';
 import 'package:dropdown_search/src/widgets/custom_inkwell.dart';
 import 'package:dropdown_search/src/widgets/custom_wrap.dart';
+import 'package:dropdown_search/src/widgets/hover_builder.dart';
 import 'package:dropdown_search/src/widgets/props/text_props.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -419,35 +420,37 @@ class DropdownSearchState<T> extends State<BaseDropdownSearch<T>> {
             valueListenable: _isFocused,
             builder: (context, isFocused, w) {
               final selectedItems = _buildSelectedItemsWidget();
-              return InputDecorator(
-                baseStyle: _getDecoratorBaseTextStyle(),
-                textAlign: widget.decoratorProps.textAlign,
-                textAlignVertical: widget.decoratorProps.textAlignVertical,
-                isEmpty: getSelectedItem == null,
-                isFocused: isFocused,
-                expands: widget.decoratorProps.expands,
-                isHovering: widget.decoratorProps.isHovering,
-                decoration: _manageDropdownDecoration(state),
-                child: isFocused
-                    ? Row(
-                        children: [
-                          if (selectedItems != null)
-                            Flexible(child: selectedItems),
-                          if (selectedItems != null)
-                            Padding(padding: EdgeInsets.only(left: 4)),
-                          Expanded(
-                            child: TextFormField(
-                              focusNode: autoCompleteFocusNode,
-                              controller: _popupStateKey
-                                  .currentState?.searchBoxController,
-                              decoration:
-                                  InputDecoration(border: InputBorder.none),
+              return HoverBuilder(builder: (context, isHovering) {
+                return InputDecorator(
+                  baseStyle: _getDecoratorBaseTextStyle(),
+                  textAlign: widget.decoratorProps.textAlign,
+                  textAlignVertical: widget.decoratorProps.textAlignVertical,
+                  isEmpty: getSelectedItem == null,
+                  isFocused: isFocused,
+                  expands: widget.decoratorProps.expands,
+                  isHovering: widget.decoratorProps.isHovering ?? isHovering,
+                  decoration: _manageDropdownDecoration(state),
+                  child: isFocused
+                      ? Row(
+                          children: [
+                            if (selectedItems != null)
+                              Flexible(child: selectedItems),
+                            if (selectedItems != null)
+                              Padding(padding: EdgeInsets.only(left: 4)),
+                            Expanded(
+                              child: TextFormField(
+                                focusNode: autoCompleteFocusNode,
+                                controller: _popupStateKey
+                                    .currentState?.searchBoxController,
+                                decoration:
+                                    InputDecoration(border: InputBorder.none),
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    : selectedItems,
-              );
+                          ],
+                        )
+                      : selectedItems,
+                );
+              });
             },
           );
         },
@@ -561,17 +564,19 @@ class DropdownSearchState<T> extends State<BaseDropdownSearch<T>> {
         return ValueListenableBuilder<bool>(
             valueListenable: _isFocused,
             builder: (context, isFocused, w) {
-              return InputDecorator(
-                baseStyle: _getDecoratorBaseTextStyle(),
-                textAlign: widget.decoratorProps.textAlign,
-                textAlignVertical: widget.decoratorProps.textAlignVertical,
-                isEmpty: getSelectedItem == null,
-                isFocused: isFocused,
-                expands: widget.decoratorProps.expands,
-                isHovering: widget.decoratorProps.isHovering,
-                decoration: _manageDropdownDecoration(state),
-                child: _buildSelectedItemsWidget(),
-              );
+              return HoverBuilder(builder: (context, isHovering) {
+                return InputDecorator(
+                  baseStyle: _getDecoratorBaseTextStyle(),
+                  textAlign: widget.decoratorProps.textAlign,
+                  textAlignVertical: widget.decoratorProps.textAlignVertical,
+                  isEmpty: getSelectedItem == null,
+                  isFocused: isFocused,
+                  expands: widget.decoratorProps.expands,
+                  isHovering: widget.decoratorProps.isHovering ?? isHovering,
+                  decoration: _manageDropdownDecoration(state),
+                  child: _buildSelectedItemsWidget(),
+                );
+              });
             });
       },
     );
@@ -595,17 +600,19 @@ class DropdownSearchState<T> extends State<BaseDropdownSearch<T>> {
         return ValueListenableBuilder<bool>(
           valueListenable: _isFocused,
           builder: (context, isFocused, w) {
-            return InputDecorator(
-              baseStyle: _getDecoratorBaseTextStyle(),
-              textAlign: widget.decoratorProps.textAlign,
-              textAlignVertical: widget.decoratorProps.textAlignVertical,
-              isEmpty: getSelectedItems.isEmpty,
-              expands: widget.decoratorProps.expands,
-              isHovering: widget.decoratorProps.isHovering,
-              isFocused: isFocused,
-              decoration: _manageDropdownDecoration(state),
-              child: _buildSelectedItemsWidget(),
-            );
+            return HoverBuilder(builder: (context, isHovering) {
+              return InputDecorator(
+                baseStyle: _getDecoratorBaseTextStyle(),
+                textAlign: widget.decoratorProps.textAlign,
+                textAlignVertical: widget.decoratorProps.textAlignVertical,
+                isEmpty: getSelectedItems.isEmpty,
+                expands: widget.decoratorProps.expands,
+                isHovering: widget.decoratorProps.isHovering ?? isHovering,
+                isFocused: isFocused,
+                decoration: _manageDropdownDecoration(state),
+                child: _buildSelectedItemsWidget(),
+              );
+            });
           },
         );
       },
