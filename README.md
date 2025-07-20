@@ -4,7 +4,7 @@
 </h1>
 
 <h4 align="center">
-  <a href="https://flutter.io" target="_blank">Flutter</a> simple and robust DropdownSearch with item search feature, making it possible to use an offline item list or filtering URL for easy customization.
+  Simple and highly customizable Flutter Dropdown with a lot of features (search, adaptive, async/sync values, ...) with multi mode like menu, modal, dialog, bottomSheet and etc.
 </h4>
 
 <p align="center">
@@ -30,36 +30,38 @@
 
 ## Key Features
 
+* Reactive widget
+* Infinite list (lazy loading)
 * Sync and/or Async items (online, offline, DB, ...)
 * Searchable dropdown
-* Three dropdown mode: Menu/ BottomSheet/ ModalBottomSheet / Dialog
-* Single & multi selection
-* Material dropdown
-* Easy customizable UI
-* Handle Light and Dark theme
-* Easy implementation into statelessWidget
 * Support multi level items
+* Five dropdown modes: Menu / BottomSheet / ModalBottomSheet / Dialog / autocomplete
+* Single & multi selection
+* Adaptive platform UI : Material, Adaptive, Cupertino
+* Easy customizable UI - No Boilerplate
 
+<br>
 <table>
     <tr>
         <td>
-            <img height="254" src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/ex4.png?raw=true" alt="Dropdown search" />
+            <img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa1.png?raw=true" alt="Dropdown search" width="300" />
+            <br><br>
+            <img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa4.gif?raw=true" alt="Dropdown search" width="300" />
         </td>
-        <td>
-            <img height="254" src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/ex1.png?raw=true" alt="Dropdown search" />
-        </td>
+        <td><img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa6.gif?raw=true" alt="Dropdown search" width="300" /></td>
     </tr>
     <tr>
+        <td><img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa7.gif?raw=true" alt="Dropdown search" width="300" /></td>
         <td>
-            <img height="254" src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/ex2.png?raw=true" alt="Dropdown search" />
-        </td>
-        <td>
-            <img height="254" src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/ex3.png?raw=true" alt="Dropdown search" />
+            <img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa3.png?raw=true" alt="Dropdown search" width="300" />
+            <br><br>
+            <img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa5.png?raw=true" alt="Dropdown search" width="300" />
         </td>
     </tr>
 </table>
 
-## packages.yaml
+
+## pubspec.yaml
 ```yaml
 dropdown_search: <lastest version>
 ```
@@ -69,175 +71,285 @@ dropdown_search: <lastest version>
 import 'package:dropdown_search/dropdown_search.dart';
 ```
 
+## Adaptive Platform UI
+* To use Material ui (_**by default**_) use `DropdownSearch<T>(...)` or  `DropdownSearch<T>.multiSelection(...)`
+* for the cupertino mode use `CupertinoDropdownSearch<T>(...)` or  `CupertinoDropdownSearch<T>.multiSelection(...)`
+* To let the package pick the suitable platform UI based on the used platform, use `AdaptiveDropdownSearch<T>(...)` or  `AdaptiveDropdownSearch<T>.multiSelection(...)`
+
+
+* **_Bonus Tip_**: with adaptive platform ui you can use different `PopupMode` depending on platform type:
+```dart
+AdaptiveDropdownSearch<T>(
+    popupProps: AdaptivePopupProps(
+        cupertinoProps: CupertinoPopupProps.bottomSheet(),
+        materialProps: PopupProps.dialog()
+    ),
+)
+```
+
+## Infinite Scroll
+To enable infinite scroll all you have to do is to declare `infiniteScrollProps` and of course don't forget to pass `loadProps` to your API like this:
+```dart
+DropdownSearch<T>(
+    items: (filter, loadProps) => _getDataFromAPI(filter, loadProps!.skip, loadProps!.take),
+    popupProps: PopupProps.dialog(
+        infiniteScrollProps: InfiniteScrollProps(
+            loadProps: LoadProps(skip: 0, take: 10),
+        ),
+    ),
+)
+```
+
 
 ## Simple implementation
+<details><summary>See here</summary>
 
 ```dart
 DropdownSearch<String>(
-    popupProps: PopupProps.menu(
-        showSelectedItems: true,
-        disabledItemFn: (String s) => s.startsWith('I'),
-    ),
-    items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
-    dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
-            labelText: "Menu mode",
-            hintText: "country in menu mode",
-        ),
-    ),
-    onChanged: print,
-    selectedItem: "Brazil",
-)
+  items: (f, cs) => ["Item 1", 'Item 2', 'Item 3', 'Item 4'],
+  popupProps: PopupProps.menu(
+    disabledItemFn: (item) => item == 'Item 3',
+    fit: FlexFit.loose
+  ),
+),
+```
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa1.png?raw=true" alt="Dropdown search" width="400" />
 
+
+
+```dart
 DropdownSearch<String>.multiSelection(
-    items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
-    popupProps: PopupPropsMultiSelection.menu(
-        showSelectedItems: true,
-        disabledItemFn: (String s) => s.startsWith('I'),
-    ),
-    onChanged: print,
-    selectedItems: ["Brazil"],
-)
+  mode: Mode.CUSTOM,
+  items: (f, cs) => ["Monday", 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  dropdownBuilder: (ctx, selectedItem) => Icon(Icons.calendar_month_outlined, size: 54),
+),
 ```
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa2.png?raw=true" alt="Dropdown search" width="400" />
 
-## customize showed field (itemAsString)
 
 ```dart
-DropdownSearch<UserModel>(
-    asyncItems: (String filter) => getData(filter),
-    itemAsString: (UserModel u) => u.userAsStringByName(),
-    onChanged: (UserModel? data) => print(data),
-    dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(labelText: "User by name"),
+DropdownSearch<(String, Color)>(
+  clickProps: ClickProps(borderRadius: BorderRadius.circular(20)),
+  mode: Mode.CUSTOM,
+  items: (f, cs) => [
+    ("Red", Colors.red),
+    ("Black", Colors.black),
+    ("Yellow", Colors.yellow),
+    ('Blue', Colors.blue),
+  ],
+  compareFn: (item1, item2) => item1.$1 == item2.$1,
+  popupProps: PopupProps.menu(
+  menuProps: MenuProps(align: MenuAlign.bottomCenter),
+    fit: FlexFit.loose,
+    itemBuilder: (context, item, isDisabled, isSelected) => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(item.$1, style: TextStyle(color: item.$2, fontSize: 16)),
     ),
-)
+  ),
+  dropdownBuilder: (ctx, selectedItem) => Icon(Icons.face, color: selectedItem?.$2, size: 54),
+),
+```
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa4.gif?raw=true" alt="Dropdown search" width="400" />
 
-DropdownSearch<UserModel>(
-    asyncItems: (String filter) => getData(filter),
-    itemAsString: (UserModel u) => u.userAsStringById(),
-    onChanged: (UserModel? data) => print(data),
-    dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(labelText: "User by id"),
+```dart
+DropdownSearch<(IconData, String)>(
+  selectedItem: (Icons.person, 'Your Profile'),
+  compareFn: (item1, item2) => item1.$1 == item2.$2,
+  items: (f, cs) => [
+    (Icons.person, 'Your Profile'),
+    (Icons.settings, 'Setting'),
+    (Icons.lock_open_rounded, 'Change Password'),
+    (Icons.power_settings_new_rounded, 'Logout'),
+  ],
+  decoratorProps: DropDownDecoratorProps(
+    decoration: InputDecoration(
+      contentPadding: EdgeInsets.symmetric(vertical: 6),
+      filled: true,
+      fillColor: Color(0xFF1eb98f),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
-)
-```
-
-## customize Filter Function
-```dart
-DropdownSearch<UserModel>(
-    filterFn: (user, filter) =>
-    user.userFilterByCreationDate(filter),
-    asyncItems: (String filter) => getData(filter),
-    itemAsString: (UserModel u) => u.userAsStringByName(),
-    onChanged: (UserModel? data) => print(data),
-    dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(labelText: "Name"),
-    ),
-)
-```
-
-## customize Search Mode
-```dart
-DropdownSearch<UserModel>(
-    popupProps: PopupProps.bottomSheet(),
-    dropdownSearchDecoration: InputDecoration(labelText: "Name"),
-    asyncItems: (String filter) => getData(filter),
-    itemAsString: (UserModel u) => u.userAsString(),
-    onChanged: (UserModel? data) => print(data),
-)
-```
-
-## Validation
-```dart
-DropdownSearch(
-    items: ["Brazil", "France", "Tunisia", "Canada"],
-    dropdownSearchDecoration: InputDecoration(labelText: "Name"),
-    onChanged: print,
-    selectedItem: "Tunisia",
-    validator: (String? item) {
-    if (item == null)
-      return "Required field";
-    else if (item == "Brazil")
-      return "Invalid item";
-    else
-      return null;
+  ),
+  dropdownBuilder: (context, selectedItem) {
+    return ListTile(
+      leading: Icon(selectedItem!.$1, color: Colors.white),
+      title: Text(
+        selectedItem.$2,
+        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
+  },
+  popupProps: PopupProps.menu(
+    itemBuilder: (context, item, isDisabled, isSelected) {
+      return ListTile(
+        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        leading: Icon(item.$1, color: Colors.white),
+        title: Text(
+          item.$2,
+          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
     },
-)
+    fit: FlexFit.loose,
+    menuProps: MenuProps(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      margin: EdgeInsets.only(top: 16),
+    ),
+    containerBuilder: (ctx, popupWidget) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Image.asset(
+              'assets/images/arrow-up.png',
+              color: Color(0xFF1eb98f),
+              height: 14,
+            ),
+          ),
+          Flexible(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xFF1eb98f),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: popupWidget,
+            ),
+          ),
+        ],
+      );
+    },
+  ),
+),
 ```
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa3.png?raw=true" alt="Dropdown search" width="400" />
 
 
-## Endpoint implementation (using [Dio package](https://pub.dev/packages/dio))
 ```dart
-DropdownSearch<UserModel>(
-    dropdownSearchDecoration: InputDecoration(labelText: "Name"),
-    asyncItems: (String filter) async {
-        var response = await Dio().get(
-            "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
-            queryParameters: {"filter": filter},
-        );
-        var models = UserModel.fromJsonList(response.data);
-        return models;
+DropdownSearch<String>(
+  items: (filter, infiniteScrollProps) => ['Item 1', 'Item 2', 'Item 3'],
+  suffixProps: DropdownSuffixProps(
+    dropdownButtonProps: DropdownButtonProps(
+      iconClosed: Icon(Icons.keyboard_arrow_down),
+      iconOpened: Icon(Icons.keyboard_arrow_up),
+    ),
+  ),
+  decoratorProps: DropDownDecoratorProps(
+    textAlign: TextAlign.center,
+    decoration: InputDecoration(
+      contentPadding: EdgeInsets.symmetric(vertical: 20),
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      hintText: 'Please select...',
+      hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.grey),
+    ),
+  ),
+  popupProps: PopupProps.menu(
+    itemBuilder: (context, item, isDisabled, isSelected) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Text(
+          item,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+      );
     },
-    onChanged: (UserModel? data) {
-      print(data);
-    },
-)
+    constraints: BoxConstraints(maxHeight: 160),
+    menuProps: MenuProps(
+      margin: EdgeInsets.only(top: 12),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+    ),
+  ),
+),
 ```
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa5.png?raw=true" alt="Dropdown search" width="400" />
+
+
+````dart
+DropdownSearch<UserModel>.multiSelection(
+  items: (filter, s) => getData(filter),
+  compareFn: (i, s) => i.isEqual(s),
+  popupProps: PopupPropsMultiSelection.bottomSheet(
+    bottomSheetProps: BottomSheetProps(backgroundColor: Colors.blueGrey[50]),
+    showSearchBox: true,
+    itemBuilder: userModelPopupItem,
+    suggestedItemProps: SuggestedItemProps(
+      showSuggestedItems: true,
+      suggestedItems: (us) {
+        return us.where((e) => e.name.contains("Mrs")).toList();
+      },
+    ),
+  ),
+),
+````
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa6.gif?raw=true" alt="Dropdown search" width="400" />
+
+
+````dart
+DropdownSearch<int>(
+  items: (f, cs) => List.generate(30, (i) => i + 1),
+  decoratorProps: DropDownDecoratorProps(
+    decoration: InputDecoration(labelText: "Dialog with title", hintText: "Select an Int"),
+  ),
+  popupProps: PopupProps.dialog(
+    title: Container(
+      decoration: BoxDecoration(color: Colors.deepPurple),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: Text(
+        'Numbers 1..30',
+        style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold, color: Colors.white70),
+      ),
+    ),
+    dialogProps: DialogProps(
+      clipBehavior: Clip.antiAlias,
+      shape: OutlineInputBorder(
+        borderSide: BorderSide(width: 0),
+        borderRadius: BorderRadius.circular(25),
+      ),
+    ),
+  ),
+),
+````
+<img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/exa7.gif?raw=true" alt="Dropdown search" width="400" />
+
+</details>
+
 ## Layout customization
-You can customize the layout of the DropdownSearch and its items. [EXAMPLE](https://github.com/salim-lachdhaf/searchable_dropdown/tree/master/example#custom-layout-endpoint-example)
+You can customize the layout of the DropdownSearch and its items. click [here](https://github.com/salim-lachdhaf/searchable_dropdown/tree/master/example) for more examples.
 
 Full documentation [here](https://pub.dev/documentation/dropdown_search/latest/dropdown_search/DropdownSearch-class.html)
 
-# Attention
-To use a template as an item type, and you don't want to use a custom function **itemAsString** and **compareFn** you **need** to implement **toString**, **equals** and **hashcode**, as shown below:
+<details><summary>DropdownSearch Anatomy</summary>
+    <img src="https://github.com/salim-lachdhaf/searchable_dropdown/blob/master/screenshots/anatomy.png?raw=true" alt="Dropdown search" width="800" />
+</details>
 
-
-```dart
-class UserModel {
-  final String id;
-  final DateTime createdAt;
-  final String name;
-  final String avatar;
-
-  UserModel({this.id, this.createdAt, this.name, this.avatar});
-
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    if (json == null) return null;
-    return UserModel(
-      id: json["id"],
-      createdAt:
-          json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-      name: json["name"],
-      avatar: json["avatar"],
-    );
-  }
-
-  static List<UserModel> fromJsonList(List list) {
-    if (list == null) return null;
-    return list.map((item) => UserModel.fromJson(item)).toList();
-  }
-
-  ///this method will prevent the override of toString
-  String userAsString() {
-    return '#${this.id} ${this.name}';
-  }
-
-  ///this method will prevent the override of toString
-  bool userFilterByCreationDate(String filter) {
-    return this.createdAt.toString().contains(filter);
-  }
-
-  ///custom comparing function to check if two users are equal
-  bool isEqual(UserModel model) {
-    return this.id == model.id;
-  }
-
-  @override
-  String toString() => name;
-}
-```
-
-# [View more Examples](https://github.com/salim-lachdhaf/searchable_dropdown/tree/master/example)
 
 ## Support
 

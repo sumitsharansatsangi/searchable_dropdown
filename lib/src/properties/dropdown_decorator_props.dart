@@ -6,6 +6,7 @@ class DropDownDecoratorProps {
   final TextAlign? textAlign;
   final TextAlignVertical? textAlignVertical;
   final bool showSuffixIcon;
+
   /// Defaults to the value of [ThemeData.splashColor] or the nearest [Theme].
   final Color? searchSplashColor;
 
@@ -36,6 +37,6 @@ class DropDownDecoratorProps {
     this.autofocus = false,
     this.canRequestFocus = true,
     this.focusNode,
-    this.showSuffixIcon=true,
+    this.showSuffixIcon = true,
   });
 }
