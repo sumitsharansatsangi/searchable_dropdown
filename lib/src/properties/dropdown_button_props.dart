@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 typedef DropdownButtonAnimationBuilder =
     Widget Function(Widget child, bool isOpen);
 
-Widget defaultAnimationBuilder(child, isOpen) {
+Widget defaultAnimationBuilder(Widget child, bool isOpen) {
   return AnimatedRotation(
     turns: isOpen ? .5 : 1,
     duration: Duration(milliseconds: 300),

@@ -6,10 +6,10 @@ class HoverBuilder extends StatefulWidget {
   final Widget Function(BuildContext context, bool isHovered) builder;
 
   @override
-  _HoverBuilderState createState() => _HoverBuilderState();
+  HoverBuilderState createState() => HoverBuilderState();
 }
 
-class _HoverBuilderState extends State<HoverBuilder> {
+class HoverBuilderState extends State<HoverBuilder> {
   bool _isHovered = false;
 
   @override
