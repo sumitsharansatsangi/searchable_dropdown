@@ -57,22 +57,22 @@ class _MaterialBottomSheetExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "Dialog with title",
-                            hintText: "Select an Int"),
+                          labelText: "Dialog with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: PopupProps.bottomSheet(
                         title: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                          ),
+                          decoration: BoxDecoration(color: Colors.deepPurple),
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 16),
                           child: Text(
                             'Numbers 1..30',
                             style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70),
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white70,
+                            ),
                           ),
                         ),
                         bottomSheetProps: BottomSheetProps(
@@ -80,8 +80,9 @@ class _MaterialBottomSheetExamplesPageState
                           shape: OutlineInputBorder(
                             borderSide: BorderSide(width: 0),
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(25),
-                                topRight: Radius.circular(25)),
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25),
+                            ),
                           ),
                         ),
                       ),
@@ -102,7 +103,7 @@ class _MaterialBottomSheetExamplesPageState
                         disabledItemFn: (int i) => i <= 3,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -162,8 +163,9 @@ class _MaterialBottomSheetExamplesPageState
                 key: _dropDownCustomBGKey,
                 items: (f, cs) => List.generate(30, (index) => "$index"),
                 popupProps: MultiSelectionPopupProps.bottomSheet(
-                  bottomSheetProps:
-                      BottomSheetProps(backgroundColor: Colors.grey.shade200),
+                  bottomSheetProps: BottomSheetProps(
+                    backgroundColor: Colors.grey.shade200,
+                  ),
                   showSearchBox: true,
                   containerBuilder: (ctx, popupWidget) {
                     return Column(
@@ -224,7 +226,8 @@ class _MaterialBottomSheetExamplesPageState
                     child: DropdownSearch<UserModel>.multiSelection(
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps: MultiSelectionPopupProps.bottomSheet(
                         showSelectedItems: true,
                         itemBuilder: userModelPopupItem,
@@ -246,8 +249,9 @@ class _MaterialBottomSheetExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -267,8 +271,9 @@ class _MaterialBottomSheetExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -287,29 +292,29 @@ class _MaterialBottomSheetExamplesPageState
                 popupProps: PopupProps.bottomSheet(
                   showSelectedItems: true,
                   interceptCallBacks: true, //important line
-                  itemBuilder: (ctx, item, isDisabled, isSelected) {
+                  itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
                     return ListTile(
                       selected: isSelected,
                       title: Text(item.level1),
                       trailing: item.subLevel.isEmpty
                           ? null
                           : (item.isExpanded
-                              ? IconButton(
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.arrow_right),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )),
+                                ? IconButton(
+                                    icon: Icon(Icons.arrow_drop_down),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )),
                       subtitle: item.subLevel.isNotEmpty && item.isExpanded
                           ? Container(
                               height: item.subLevel.length * 50,
@@ -317,7 +322,8 @@ class _MaterialBottomSheetExamplesPageState
                                 children: item.subLevel
                                     .map(
                                       (e) => ListTile(
-                                        selected: _dropdownMultiLevelKey
+                                        selected:
+                                            _dropdownMultiLevelKey
                                                 .currentState
                                                 ?.getSelectedItem
                                                 ?.level1 ==

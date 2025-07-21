@@ -38,8 +38,9 @@ class _AdaptiveModalsExamplesPageState
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar:
-          AppBar(title: Text("AdaptiveDropdownSearch Modal BottomSheet Demo")),
+      appBar: AppBar(
+        title: Text("AdaptiveDropdownSearch Modal BottomSheet Demo"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Form(
@@ -59,23 +60,23 @@ class _AdaptiveModalsExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "Dialog with title",
-                            hintText: "Select an Int"),
+                          labelText: "Dialog with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: AdaptivePopupProps(
                         cupertinoProps: CupertinoPopupProps.modalBottomSheet(
                           title: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.deepPurple,
-                            ),
+                            decoration: BoxDecoration(color: Colors.deepPurple),
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(vertical: 16),
                             child: Text(
                               'Numbers 1..30',
                               style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70),
+                                fontSize: 21,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                           modalBottomSheetProps:
@@ -102,7 +103,7 @@ class _AdaptiveModalsExamplesPageState
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -143,17 +144,17 @@ class _AdaptiveModalsExamplesPageState
                       popupProps: AdaptiveMultiSelectionPopupProps(
                         cupertinoProps:
                             CupertinoMultiSelectionPopupProps.modalBottomSheet(
-                          showSearchBox: true,
-                          itemBuilder: userModelPopupItem,
-                          suggestionsProps: SuggestionsProps(
-                            showSuggestions: true,
-                            items: (us) {
-                              return us
-                                  .where((e) => e.name.contains("Mrs"))
-                                  .toList();
-                            },
-                          ),
-                        ),
+                              showSearchBox: true,
+                              itemBuilder: userModelPopupItem,
+                              suggestionsProps: SuggestionsProps(
+                                showSuggestions: true,
+                                items: (us) {
+                                  return us
+                                      .where((e) => e.name.contains("Mrs"))
+                                      .toList();
+                                },
+                              ),
+                            ),
                       ),
                     ),
                   ),
@@ -169,8 +170,7 @@ class _AdaptiveModalsExamplesPageState
                 key: _dropDownCustomBGKey,
                 items: (f, cs) => List.generate(30, (index) => "$index"),
                 popupProps: AdaptiveMultiSelectionPopupProps(
-                  cupertinoProps:
-                      CupertinoMultiSelectionPopupProps.modalBottomSheet(
+                  cupertinoProps: CupertinoMultiSelectionPopupProps.modalBottomSheet(
                     modalBottomSheetProps: CupertinoModalBottomSheetProps(),
                     showSearchBox: true,
                     containerBuilder: (ctx, popupWidget) {
@@ -234,21 +234,23 @@ class _AdaptiveModalsExamplesPageState
                       context: context,
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps: AdaptiveMultiSelectionPopupProps(
                         cupertinoProps:
                             CupertinoMultiSelectionPopupProps.modalBottomSheet(
-                          showSelectedItems: true,
-                          itemBuilder: userModelPopupItem,
-                          showSearchBox: true,
-                          searchFieldProps: CupertinoTextFieldProps(
-                            controller: _userEditTextController,
-                            suffix: IconButton(
-                              icon: Icon(Icons.clear),
-                              onPressed: () => _userEditTextController.clear(),
+                              showSelectedItems: true,
+                              itemBuilder: userModelPopupItem,
+                              showSearchBox: true,
+                              searchFieldProps: CupertinoTextFieldProps(
+                                controller: _userEditTextController,
+                                suffix: IconButton(
+                                  icon: Icon(Icons.clear),
+                                  onPressed: () =>
+                                      _userEditTextController.clear(),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                       ),
                       compareFn: (item, selectedItem) =>
                           item.id == selectedItem.id,
@@ -257,8 +259,9 @@ class _AdaptiveModalsExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -281,8 +284,9 @@ class _AdaptiveModalsExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -303,29 +307,29 @@ class _AdaptiveModalsExamplesPageState
                   cupertinoProps: CupertinoPopupProps.modalBottomSheet(
                     showSelectedItems: true,
                     interceptCallBacks: true, //important line
-                    itemBuilder: (ctx, item, isDisabled, isSelected) {
+                    itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
                       return ListTile(
                         selected: isSelected,
                         title: Text(item.level1),
                         trailing: item.subLevel.isEmpty
                             ? null
                             : (item.isExpanded
-                                ? IconButton(
-                                    icon: Icon(Icons.arrow_drop_down),
-                                    onPressed: () {
-                                      item.isExpanded = !item.isExpanded;
-                                      _dropdownMultiLevelKey.currentState
-                                          ?.updatePopupState();
-                                    },
-                                  )
-                                : IconButton(
-                                    icon: Icon(Icons.arrow_right),
-                                    onPressed: () {
-                                      item.isExpanded = !item.isExpanded;
-                                      _dropdownMultiLevelKey.currentState
-                                          ?.updatePopupState();
-                                    },
-                                  )),
+                                  ? IconButton(
+                                      icon: Icon(Icons.arrow_drop_down),
+                                      onPressed: () {
+                                        item.isExpanded = !item.isExpanded;
+                                        _dropdownMultiLevelKey.currentState
+                                            ?.updatePopupState();
+                                      },
+                                    )
+                                  : IconButton(
+                                      icon: Icon(Icons.arrow_right),
+                                      onPressed: () {
+                                        item.isExpanded = !item.isExpanded;
+                                        _dropdownMultiLevelKey.currentState
+                                            ?.updatePopupState();
+                                      },
+                                    )),
                         subtitle: item.subLevel.isNotEmpty && item.isExpanded
                             ? Container(
                                 height: item.subLevel.length * 50,
@@ -333,7 +337,8 @@ class _AdaptiveModalsExamplesPageState
                                   children: item.subLevel
                                       .map(
                                         (e) => ListTile(
-                                          selected: _dropdownMultiLevelKey
+                                          selected:
+                                              _dropdownMultiLevelKey
                                                   .currentState
                                                   ?.getSelectedItem
                                                   ?.level1 ==

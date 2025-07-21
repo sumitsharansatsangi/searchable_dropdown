@@ -58,23 +58,23 @@ class _AdaptiveBottomSheetExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "Dialog with title",
-                            hintText: "Select an Int"),
+                          labelText: "Dialog with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.bottomSheet(
                           title: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.deepPurple,
-                            ),
+                            decoration: BoxDecoration(color: Colors.deepPurple),
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(vertical: 16),
                             child: Text(
                               'Numbers 1..30',
                               style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70),
+                                fontSize: 21,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                           bottomSheetProps: BottomSheetProps(
@@ -82,8 +82,9 @@ class _AdaptiveBottomSheetExamplesPageState
                             shape: OutlineInputBorder(
                               borderSide: BorderSide(width: 0),
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25)),
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                              ),
                             ),
                           ),
                         ),
@@ -108,7 +109,7 @@ class _AdaptiveBottomSheetExamplesPageState
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -171,62 +172,64 @@ class _AdaptiveBottomSheetExamplesPageState
               Text("[custom popup background examples]"),
               Divider(),
               AdaptiveDropdownSearch<String>.multiSelection(
-                  context: context,
-                  key: _dropDownCustomBGKey,
-                  items: (f, cs) => List.generate(30, (index) => "$index"),
-                  popupProps: AdaptiveMultiSelectionPopupProps(
-                    materialProps: MultiSelectionPopupProps.bottomSheet(
-                      bottomSheetProps: BottomSheetProps(
-                          backgroundColor: Colors.grey.shade200),
-                      showSearchBox: true,
-                      containerBuilder: (ctx, popupWidget) {
-                        return Column(
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: FilledButton(
-                                    onPressed: () {
-                                      // How should I unselect all items in the list?
-                                      _dropDownCustomBGKey.currentState
-                                          ?.closeDropDownSearch();
-                                    },
-                                    child: const Text('Cancel'),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      // How should I select all items in the list?
-                                      _dropDownCustomBGKey.currentState
-                                          ?.popupSelectAllItems();
-                                    },
-                                    child: const Text('All'),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      // How should I unselect all items in the list?
-                                      _dropDownCustomBGKey.currentState
-                                          ?.popupDeselectAllItems();
-                                    },
-                                    child: const Text('None'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Expanded(child: popupWidget),
-                          ],
-                        );
-                      },
+                context: context,
+                key: _dropDownCustomBGKey,
+                items: (f, cs) => List.generate(30, (index) => "$index"),
+                popupProps: AdaptiveMultiSelectionPopupProps(
+                  materialProps: MultiSelectionPopupProps.bottomSheet(
+                    bottomSheetProps: BottomSheetProps(
+                      backgroundColor: Colors.grey.shade200,
                     ),
-                  )),
+                    showSearchBox: true,
+                    containerBuilder: (ctx, popupWidget) {
+                      return Column(
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: FilledButton(
+                                  onPressed: () {
+                                    // How should I unselect all items in the list?
+                                    _dropDownCustomBGKey.currentState
+                                        ?.closeDropDownSearch();
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    // How should I select all items in the list?
+                                    _dropDownCustomBGKey.currentState
+                                        ?.popupSelectAllItems();
+                                  },
+                                  child: const Text('All'),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8),
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    // How should I unselect all items in the list?
+                                    _dropDownCustomBGKey.currentState
+                                        ?.popupDeselectAllItems();
+                                  },
+                                  child: const Text('None'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Expanded(child: popupWidget),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
 
               ///**********************************************[dropdownBuilder examples]********************************///
               Padding(padding: EdgeInsets.all(16)),
@@ -239,7 +242,8 @@ class _AdaptiveBottomSheetExamplesPageState
                       context: context,
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps: AdaptiveMultiSelectionPopupProps(
                         materialProps: MultiSelectionPopupProps.bottomSheet(
                           showSelectedItems: true,
@@ -264,8 +268,9 @@ class _AdaptiveBottomSheetExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -288,8 +293,9 @@ class _AdaptiveBottomSheetExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -302,21 +308,21 @@ class _AdaptiveBottomSheetExamplesPageState
               Text("[multiLevel items example]"),
               Divider(),
               AdaptiveDropdownSearch<MultiLevelString>(
-                  context: context,
-                  key: _dropdownMultiLevelKey,
-                  items: (f, cs) => myMultiLevelItems,
-                  compareFn: (i1, i2) => i1.level1 == i2.level1,
-                  popupProps: AdaptivePopupProps(
-                    materialProps: PopupProps.bottomSheet(
-                      showSelectedItems: true,
-                      interceptCallBacks: true, //important line
-                      itemBuilder: (ctx, item, isDisabled, isSelected) {
-                        return ListTile(
-                          selected: isSelected,
-                          title: Text(item.level1),
-                          trailing: item.subLevel.isEmpty
-                              ? null
-                              : (item.isExpanded
+                context: context,
+                key: _dropdownMultiLevelKey,
+                items: (f, cs) => myMultiLevelItems,
+                compareFn: (i1, i2) => i1.level1 == i2.level1,
+                popupProps: AdaptivePopupProps(
+                  materialProps: PopupProps.bottomSheet(
+                    showSelectedItems: true,
+                    interceptCallBacks: true, //important line
+                    itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
+                      return ListTile(
+                        selected: isSelected,
+                        title: Text(item.level1),
+                        trailing: item.subLevel.isEmpty
+                            ? null
+                            : (item.isExpanded
                                   ? IconButton(
                                       icon: Icon(Icons.arrow_drop_down),
                                       onPressed: () {
@@ -333,36 +339,37 @@ class _AdaptiveBottomSheetExamplesPageState
                                             ?.updatePopupState();
                                       },
                                     )),
-                          subtitle: item.subLevel.isNotEmpty && item.isExpanded
-                              ? Container(
-                                  height: item.subLevel.length * 50,
-                                  child: ListView(
-                                    children: item.subLevel
-                                        .map(
-                                          (e) => ListTile(
-                                            selected: _dropdownMultiLevelKey
-                                                    .currentState
-                                                    ?.getSelectedItem
-                                                    ?.level1 ==
-                                                e.level1,
-                                            title: Text(e.level1),
-                                            onTap: () {
+                        subtitle: item.subLevel.isNotEmpty && item.isExpanded
+                            ? Container(
+                                height: item.subLevel.length * 50,
+                                child: ListView(
+                                  children: item.subLevel
+                                      .map(
+                                        (e) => ListTile(
+                                          selected:
                                               _dropdownMultiLevelKey
                                                   .currentState
-                                                  ?.popupValidate([e]);
-                                            },
-                                          ),
-                                        )
-                                        .toList(),
-                                  ),
-                                )
-                              : null,
-                          onTap: () => _dropdownMultiLevelKey.currentState
-                              ?.popupValidate([item]),
-                        );
-                      },
-                    ),
-                  )),
+                                                  ?.getSelectedItem
+                                                  ?.level1 ==
+                                              e.level1,
+                                          title: Text(e.level1),
+                                          onTap: () {
+                                            _dropdownMultiLevelKey.currentState
+                                                ?.popupValidate([e]);
+                                          },
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              )
+                            : null,
+                        onTap: () => _dropdownMultiLevelKey.currentState
+                            ?.popupValidate([item]),
+                      );
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),

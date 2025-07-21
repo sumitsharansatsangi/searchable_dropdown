@@ -23,17 +23,18 @@ class AdaptiveDropdownSearch<T> extends BaseDropdownSearch<T> {
     super.compareFn,
     super.onBeforeChange,
     super.onBeforePopupOpening,
+    super.onFocusChange,
     //form properties
     super.onSaved,
     super.validator,
     super.decoratorProps,
   }) : super(
-          popupProps:
-              context.getUiToApply(UiMode.adaptive) == UiToApply.cupertino
-                  ? popupProps.cupertinoProps
-                  : popupProps.materialProps,
-          uiMode: UiMode.adaptive,
-        );
+         popupProps:
+             context.getUiToApply(UiMode.adaptive) == UiToApply.cupertino
+             ? popupProps.cupertinoProps
+             : popupProps.materialProps,
+         uiMode: UiMode.adaptive,
+       );
 
   AdaptiveDropdownSearch.multiSelection({
     AdaptiveMultiSelectionPopupProps<T> popupProps =
@@ -61,10 +62,10 @@ class AdaptiveDropdownSearch<T> extends BaseDropdownSearch<T> {
     super.validator,
     super.decoratorProps,
   }) : super.multiSelection(
-          popupProps:
-              context.getUiToApply(UiMode.adaptive) == UiToApply.cupertino
-                  ? popupProps.cupertinoProps
-                  : popupProps.materialProps,
-          uiMode: UiMode.adaptive,
-        );
+         popupProps:
+             context.getUiToApply(UiMode.adaptive) == UiToApply.cupertino
+             ? popupProps.cupertinoProps
+             : popupProps.materialProps,
+         uiMode: UiMode.adaptive,
+       );
 }

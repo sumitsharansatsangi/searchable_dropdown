@@ -58,8 +58,9 @@ class _CupertinoDialogExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "Dialog with title",
-                            hintText: "Select an Int"),
+                          labelText: "Dialog with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: CupertinoPopupProps.dialog(
                         title: Container(
@@ -67,7 +68,9 @@ class _CupertinoDialogExamplesPageState
                           child: Text(
                             'Numbers 1..30',
                             style: TextStyle(
-                                fontSize: 21, fontWeight: FontWeight.bold),
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -88,7 +91,7 @@ class _CupertinoDialogExamplesPageState
                         disabledItemFn: (int i) => i <= 3,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -150,9 +153,7 @@ class _CupertinoDialogExamplesPageState
               Padding(padding: EdgeInsets.all(8)),
               Row(
                 children: [
-                  Expanded(
-                    child: DropdownWithGlobalCheckBox(),
-                  ),
+                  Expanded(child: DropdownWithGlobalCheckBox()),
                   Padding(padding: EdgeInsets.all(4)),
                   Expanded(
                     child: CupertinoDropdownSearch<String>.multiSelection(
@@ -170,7 +171,8 @@ class _CupertinoDialogExamplesPageState
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0),
+                                      horizontal: 8.0,
+                                    ),
                                     child: OutlinedButton(
                                       onPressed: () {
                                         // How should I select all items in the list?
@@ -182,7 +184,8 @@ class _CupertinoDialogExamplesPageState
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0),
+                                      horizontal: 8.0,
+                                    ),
                                     child: OutlinedButton(
                                       onPressed: () {
                                         // How should I unselect all items in the list?
@@ -214,7 +217,8 @@ class _CupertinoDialogExamplesPageState
                     child: CupertinoDropdownSearch<UserModel>.multiSelection(
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps: CupertinoMultiSelectionPopupProps.dialog(
                         showSelectedItems: true,
                         itemBuilder: userModelPopupItem,
@@ -234,8 +238,9 @@ class _CupertinoDialogExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -255,8 +260,9 @@ class _CupertinoDialogExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -275,29 +281,29 @@ class _CupertinoDialogExamplesPageState
                 popupProps: CupertinoPopupProps.dialog(
                   showSelectedItems: true,
                   interceptCallBacks: true, //important line
-                  itemBuilder: (ctx, item, isDisabled, isSelected) {
+                  itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
                     return ListTile(
                       selected: isSelected,
                       title: Text(item.level1),
                       trailing: item.subLevel.isEmpty
                           ? null
                           : (item.isExpanded
-                              ? IconButton(
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.arrow_right),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )),
+                                ? IconButton(
+                                    icon: Icon(Icons.arrow_drop_down),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )),
                       subtitle: item.subLevel.isNotEmpty && item.isExpanded
                           ? Container(
                               height: item.subLevel.length * 50,
@@ -305,7 +311,8 @@ class _CupertinoDialogExamplesPageState
                                 children: item.subLevel
                                     .map(
                                       (e) => ListTile(
-                                        selected: _dropdownMultiLevelKey
+                                        selected:
+                                            _dropdownMultiLevelKey
                                                 .currentState
                                                 ?.getSelectedItem
                                                 ?.level1 ==
@@ -343,8 +350,9 @@ class DropdownWithGlobalCheckBox extends StatefulWidget {
 class _DropdownWithGlobalCheckBoxState
     extends State<DropdownWithGlobalCheckBox> {
   final _infiniteScrollDropDownKey = GlobalKey<DropdownSearchState<int>>();
-  final ValueNotifier<bool?> longListCheckBoxValueNotifier =
-      ValueNotifier(false);
+  final ValueNotifier<bool?> longListCheckBoxValueNotifier = ValueNotifier(
+    false,
+  );
   final longList = List.generate(500, (i) => i + 1);
 
   bool? _getCheckBoxState() {
@@ -352,7 +360,7 @@ class _DropdownWithGlobalCheckBoxState
         _infiniteScrollDropDownKey.currentState?.popupGetSelectedItems ?? [];
     var isAllSelected =
         _infiniteScrollDropDownKey.currentState?.popupIsAllItemSelected ??
-            false;
+        false;
     return selectedItem.isEmpty ? false : (isAllSelected ? true : null);
   }
 
@@ -405,7 +413,7 @@ class _DropdownWithGlobalCheckBoxState
                   },
                   icon: Icon(Icons.sync),
                   label: Text('reload'),
-                )
+                ),
               ],
             );
           },
@@ -459,7 +467,9 @@ class _DropdownWithGlobalCheckBoxState
 }
 
 Widget customDropDownExampleMultiSelection(
-    BuildContext context, List<UserModel> selectedItems) {
+  BuildContext context,
+  List<UserModel> selectedItems,
+) {
   if (selectedItems.isEmpty) {
     return ListTile(
       contentPadding: EdgeInsets.all(0),
@@ -486,7 +496,12 @@ Widget customDropDownExampleMultiSelection(
 }
 
 Widget userModelPopupItem(
-    BuildContext context, UserModel item, bool isDisabled, bool isSelected) {
+  BuildContext context,
+  UserModel item,
+  bool isDisabled,
+  bool isSelected,
+  Function onTap,
+) {
   return Container(
     decoration: !isSelected
         ? null

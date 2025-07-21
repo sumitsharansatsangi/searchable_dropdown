@@ -41,21 +41,23 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       'Thursday',
                       'Friday',
                       'Saturday',
-                      'Sunday'
+                      'Sunday',
                     ],
                     popupProps: AdaptiveMultiSelectionPopupProps(
                       materialProps: MultiSelectionPopupProps.menu(
-                          disabledItemFn: (item) => item == 'Tuesday',
-                          constraints: BoxConstraints(minWidth: 250),
-                          fit: FlexFit.loose),
+                        disabledItemFn: (item) => item == 'Tuesday',
+                        constraints: BoxConstraints(minWidth: 250),
+                        fit: FlexFit.loose,
+                      ),
                     ),
                     dropdownBuilder: (ctx, selectedItem) =>
                         Icon(Icons.calendar_month_outlined, size: 54),
                   ),
                   AdaptiveDropdownSearch<StringColorModel>(
                     context: context,
-                    clickProps:
-                        ClickProps(borderRadius: BorderRadius.circular(20)),
+                    clickProps: ClickProps(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     mode: Mode.custom,
                     items: (f, cs) => [
                       StringColorModel(name: 'Red', color: Colors.red),
@@ -65,17 +67,24 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                     ],
                     compareFn: (item1, item2) => item1.name == item2.name,
                     popupProps: AdaptivePopupProps(
-                        materialProps: PopupProps.menu(
-                      menuProps: MenuProps(align: MenuAlign.bottomCenter),
-                      constraints: BoxConstraints(minWidth: 128),
-                      fit: FlexFit.loose,
-                      itemBuilder: (context, item, isDisabled, isSelected) =>
-                          Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(item.name,
-                            style: TextStyle(color: item.color, fontSize: 16)),
+                      materialProps: PopupProps.menu(
+                        menuProps: MenuProps(align: MenuAlign.bottomCenter),
+                        constraints: BoxConstraints(minWidth: 128),
+                        fit: FlexFit.loose,
+                        itemBuilder:
+                            (context, item, isDisabled, isSelected, onTap) =>
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    item.name,
+                                    style: TextStyle(
+                                      color: item.color,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
                       ),
-                    )),
+                    ),
                     dropdownBuilder: (ctx, selectedItem) =>
                         Icon(Icons.face, color: selectedItem?.color, size: 54),
                   ),
@@ -87,7 +96,7 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       'Twitter',
                       'Instagram',
                       'SnapChat',
-                      'Other'
+                      'Other',
                     ],
                     dropdownBuilder: (context, selectedItem) {
                       int r = 0;
@@ -107,12 +116,16 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       }
                       return RotationTransition(
                         turns: AlwaysStoppedAnimation(r / 360),
-                        child: Image.asset('assets/images/networks.png',
-                            height: 164, width: 164),
+                        child: Image.asset(
+                          'assets/images/networks.png',
+                          height: 164,
+                          width: 164,
+                        ),
                       );
                     },
                     clickProps: ClickProps(
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                    ),
                     popupProps: AdaptivePopupProps(
                       materialProps: PopupProps.menu(
                         fit: FlexFit.loose,
@@ -140,8 +153,23 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                   Expanded(
                     child: AdaptiveDropdownSearch<int>(
                       context: context,
-                      items: (f, cs) =>
-                          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                      items: (f, cs) => [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        13,
+                        14,
+                        15,
+                      ],
                     ),
                   ),
                   Padding(padding: EdgeInsets.all(4)),
@@ -151,8 +179,9 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       child: AdaptiveDropdownSearch<int>.multiSelection(
                         context: context,
                         items: (f, cs) => List.generate(50, (i) => i),
-                        selectedItemsScrollProps:
-                            ScrollProps(scrollDirection: Axis.horizontal),
+                        selectedItemsScrollProps: ScrollProps(
+                          scrollDirection: Axis.horizontal,
+                        ),
                       ),
                     ),
                   ),
@@ -168,7 +197,8 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       context: context,
                       items: (f, cs) => getData(f),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       compareFn: (item, selectedItem) =>
                           item.id == selectedItem.id,
                       dropdownBuilder: (context, selectedItem) {
@@ -179,8 +209,9 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                         return ListTile(
                           contentPadding: EdgeInsets.only(left: 0),
                           leading: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              child: Text(selectedItem.name[0])),
+                            backgroundColor: Colors.blue,
+                            child: Text(selectedItem.name[0]),
+                          ),
                           title: Text(selectedItem.name),
                         );
                       },
@@ -190,15 +221,17 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                               true, //data will be filtered by the backend
                           showSearchBox: true,
                           showSelectedItems: true,
-                          itemBuilder: (ctx, item, isDisabled, isSelected) {
-                            return ListTile(
-                              leading: CircleAvatar(
-                                  backgroundColor: Colors.blue,
-                                  child: Text(item.name[0])),
-                              selected: isSelected,
-                              title: Text(item.name),
-                            );
-                          },
+                          itemBuilder:
+                              (ctx, item, isDisabled, isSelected, onTap) {
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: Colors.blue,
+                                    child: Text(item.name[0]),
+                                  ),
+                                  selected: isSelected,
+                                  title: Text(item.name),
+                                );
+                              },
                         ),
                       ),
                     ),
@@ -225,18 +258,24 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                     AdaptiveDropdownSearch<IconStringModel>(
                       context: context,
                       selectedItem: IconStringModel(
-                          icon: Icons.person, name: 'Your Profile'),
+                        icon: Icons.person,
+                        name: 'Your Profile',
+                      ),
                       compareFn: (item1, item2) => item1.icon == item2.icon,
                       items: (f, cs) => [
                         IconStringModel(
-                            icon: Icons.person, name: 'Your Profile'),
+                          icon: Icons.person,
+                          name: 'Your Profile',
+                        ),
                         IconStringModel(icon: Icons.settings, name: 'Setting'),
                         IconStringModel(
-                            icon: Icons.lock_open_rounded,
-                            name: 'Change Password'),
+                          icon: Icons.lock_open_rounded,
+                          name: 'Change Password',
+                        ),
                         IconStringModel(
-                            icon: Icons.power_settings_new_rounded,
-                            name: 'Logout'),
+                          icon: Icons.power_settings_new_rounded,
+                          name: 'Logout',
+                        ),
                       ],
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
@@ -259,33 +298,40 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       ),
                       dropdownBuilder: (context, selectedItem) {
                         return ListTile(
-                          leading:
-                              Icon(selectedItem!.icon, color: Colors.white),
+                          leading: Icon(
+                            selectedItem!.icon,
+                            color: Colors.white,
+                          ),
                           title: Text(
                             selectedItem.name,
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         );
                       },
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.menu(
-                          itemBuilder: (context, item, isDisabled, isSelected) {
-                            return ListTile(
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 12),
-                              leading: Icon(item.icon, color: Colors.white),
-                              title: Text(
-                                item.name,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          },
+                          itemBuilder:
+                              (context, item, isDisabled, isSelected, onTap) {
+                                return ListTile(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    vertical: 8,
+                                    horizontal: 12,
+                                  ),
+                                  leading: Icon(item.icon, color: Colors.white),
+                                  title: Text(
+                                    item.name,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              },
                           fit: FlexFit.loose,
                           menuProps: MenuProps(
                             backgroundColor: Colors.transparent,
@@ -324,8 +370,11 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                     Padding(padding: EdgeInsets.only(top: 32)),
                     AdaptiveDropdownSearch<String>(
                       context: context,
-                      items: (filter, infiniteScrollProps) =>
-                          ['Item 1', 'Item 2', 'Item 3'],
+                      items: (filter, infiniteScrollProps) => [
+                        'Item 1',
+                        'Item 2',
+                        'Item 3',
+                      ],
                       suffixProps: DropdownSuffixProps(
                         dropdownButtonProps: DropdownButtonProps(
                           iconClosed: Icon(Icons.keyboard_arrow_down),
@@ -352,31 +401,38 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                           ),
                           hintText: 'Please select...',
                           hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.grey),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.menu(
-                          itemBuilder: (context, item, isDisabled, isSelected) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
-                              child: Text(
-                                item,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          },
+                          itemBuilder:
+                              (context, item, isDisabled, isSelected, onTap) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 12.0,
+                                  ),
+                                  child: Text(
+                                    item,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
+                              },
                           fit: FlexFit.loose,
                           menuProps: MenuProps(
                             margin: EdgeInsets.only(top: 12),
                             shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12))),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -384,12 +440,17 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                     Padding(padding: EdgeInsets.only(top: 32)),
                     AdaptiveDropdownSearch<String>(
                       context: context,
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: 'Bottom Left Menu',
-                            border: OutlineInputBorder()),
+                          labelText: 'Bottom Left Menu',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.menu(
@@ -403,11 +464,16 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       context: context,
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: 'Bottom Center Menu',
-                            border: OutlineInputBorder()),
+                          labelText: 'Bottom Center Menu',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.menu(
                           constraints: BoxConstraints.tight(Size(250, 250)),
@@ -420,11 +486,16 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                       context: context,
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: 'Top Right Menu',
-                            border: OutlineInputBorder()),
+                          labelText: 'Top Right Menu',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       popupProps: AdaptivePopupProps(
                         materialProps: PopupProps.menu(
                           constraints: BoxConstraints.tight(Size(250, 250)),
@@ -456,7 +527,8 @@ class _AdaptiveMenuExamplesPageState extends State<AdaptiveMenuExamplesPage> {
                         return null;
                       },
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                     ),
                   ),
                   Padding(padding: EdgeInsets.all(4)),

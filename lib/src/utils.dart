@@ -18,8 +18,12 @@ const kCupertinoTextFieldBG = CupertinoDynamicColor.withBrightness(
 
 const kCupertinoBorderRadius = BorderRadius.all(Radius.circular(5));
 
-RelativeRect getPosition(RenderBox dropdown, RenderBox overlay, Size menuSize,
-    MenuAlign? menuAlign) {
+RelativeRect getPosition(
+  RenderBox dropdown,
+  RenderBox overlay,
+  Size menuSize,
+  MenuAlign? menuAlign,
+) {
   final dropDownX = dropdown.localToGlobal(Offset.zero, ancestor: overlay).dx;
   final dropDownY = dropdown.localToGlobal(Offset.zero, ancestor: overlay).dy;
 
@@ -47,7 +51,8 @@ RelativeRect getPosition(RenderBox dropdown, RenderBox overlay, Size menuSize,
 
     return RelativeRect.fromSize(Offset(dX, dY) & menuSize, overlay.size);
   } else if (menuAlign == MenuAlign.topEnd) {
-    final dX = dropdown.localToGlobal(Offset.zero, ancestor: overlay).dx +
+    final dX =
+        dropdown.localToGlobal(Offset.zero, ancestor: overlay).dx +
         dropdown.size.width -
         menuSize.width;
     final dY = dropDownY - menuSize.height;
@@ -56,16 +61,21 @@ RelativeRect getPosition(RenderBox dropdown, RenderBox overlay, Size menuSize,
   }
 
   //by default BottomRight
-  final dX = dropdown.localToGlobal(Offset.zero, ancestor: overlay).dx +
+  final dX =
+      dropdown.localToGlobal(Offset.zero, ancestor: overlay).dx +
       dropdown.size.width -
       menuSize.width;
-  final dY = dropdown.localToGlobal(Offset.zero, ancestor: overlay).dy +
+  final dY =
+      dropdown.localToGlobal(Offset.zero, ancestor: overlay).dy +
       dropdown.size.height;
   return RelativeRect.fromSize(Offset(dX, dY) & menuSize, overlay.size);
 }
 
 Size computePopupSize(
-    RenderBox dropdown, RenderBox overlay, BoxConstraints popUpConstraints) {
+  RenderBox dropdown,
+  RenderBox overlay,
+  BoxConstraints popUpConstraints,
+) {
   var menuMinWidth = popUpConstraints.minWidth;
   var menuMaxWidth = popUpConstraints.maxWidth;
 
@@ -98,8 +108,12 @@ extension RelativeRectEx on RelativeRect {
   RelativeRect addMargin(EdgeInsets? margin) {
     if (margin == null) return this;
 
-    return RelativeRect.fromLTRB(left + margin.left, top + margin.top,
-        right + margin.right, bottom + margin.bottom);
+    return RelativeRect.fromLTRB(
+      left + margin.left,
+      top + margin.top,
+      right + margin.right,
+      bottom + margin.bottom,
+    );
   }
 }
 
@@ -118,11 +132,9 @@ extension PlatformUi on BuildContext {
           case TargetPlatform.fuchsia:
           case TargetPlatform.linux:
           case TargetPlatform.windows:
-          default:
             return UiToApply.material;
         }
       case UiMode.material:
-      default:
         return UiToApply.material;
     }
   }

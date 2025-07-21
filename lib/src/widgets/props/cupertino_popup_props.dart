@@ -56,11 +56,11 @@ class CupertinoMultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        dialogProps = const CupertinoDialogProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       dialogProps = const CupertinoDialogProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
 
   const CupertinoMultiSelectionPopupProps.autocomplete({
     this.autoCompleteProps = const CupertinoAutocompleteProps(),
@@ -93,11 +93,11 @@ class CupertinoMultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        dialogProps = const CupertinoDialogProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        menuProps = const CupertinoMenuProps(),
-        super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       dialogProps = const CupertinoDialogProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       menuProps = const CupertinoMenuProps(),
+       super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
 
   const CupertinoMultiSelectionPopupProps.dialog({
     this.dialogProps = const CupertinoDialogProps(),
@@ -130,11 +130,11 @@ class CupertinoMultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        menuProps = const CupertinoMenuProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       menuProps = const CupertinoMenuProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
 
   const CupertinoMultiSelectionPopupProps.bottomSheet({
     this.bottomSheetProps = const CupertinoBottomSheetProps(),
@@ -167,11 +167,11 @@ class CupertinoMultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : menuProps = const CupertinoMenuProps(),
-        dialogProps = const CupertinoDialogProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
+  }) : menuProps = const CupertinoMenuProps(),
+       dialogProps = const CupertinoDialogProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
 
   const CupertinoMultiSelectionPopupProps.modalBottomSheet({
     this.modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
@@ -204,13 +204,14 @@ class CupertinoMultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : menuProps = const CupertinoMenuProps(),
-        bottomSheetProps = const CupertinoBottomSheetProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        dialogProps = const CupertinoDialogProps(),
-        super(
-            mode: PopupMode.modalBottomSheet,
-            searchFieldProps: searchFieldProps);
+  }) : menuProps = const CupertinoMenuProps(),
+       bottomSheetProps = const CupertinoBottomSheetProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       dialogProps = const CupertinoDialogProps(),
+       super(
+         mode: PopupMode.modalBottomSheet,
+         searchFieldProps: searchFieldProps,
+       );
 }
 
 class CupertinoPopupProps<T> extends BasePopupProps<T> {
@@ -255,11 +256,11 @@ class CupertinoPopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        dialogProps = const CupertinoDialogProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       dialogProps = const CupertinoDialogProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
 
   const CupertinoPopupProps.autocomplete({
     this.autoCompleteProps = const CupertinoAutocompleteProps(),
@@ -286,11 +287,11 @@ class CupertinoPopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        dialogProps = const CupertinoDialogProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        menuProps = const CupertinoMenuProps(),
-        super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       dialogProps = const CupertinoDialogProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       menuProps = const CupertinoMenuProps(),
+       super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
 
   const CupertinoPopupProps.dialog({
     this.dialogProps = const CupertinoDialogProps(),
@@ -317,11 +318,11 @@ class CupertinoPopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const CupertinoBottomSheetProps(),
-        menuProps = const CupertinoMenuProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const CupertinoBottomSheetProps(),
+       menuProps = const CupertinoMenuProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
 
   const CupertinoPopupProps.modalBottomSheet({
     this.modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
@@ -348,13 +349,14 @@ class CupertinoPopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : menuProps = const CupertinoMenuProps(),
-        dialogProps = const CupertinoDialogProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        bottomSheetProps = const CupertinoBottomSheetProps(),
-        super(
-            mode: PopupMode.modalBottomSheet,
-            searchFieldProps: searchFieldProps);
+  }) : menuProps = const CupertinoMenuProps(),
+       dialogProps = const CupertinoDialogProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       bottomSheetProps = const CupertinoBottomSheetProps(),
+       super(
+         mode: PopupMode.modalBottomSheet,
+         searchFieldProps: searchFieldProps,
+       );
 
   const CupertinoPopupProps.bottomSheet({
     this.bottomSheetProps = const CupertinoBottomSheetProps(),
@@ -381,9 +383,9 @@ class CupertinoPopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : menuProps = const CupertinoMenuProps(),
-        modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
-        dialogProps = const CupertinoDialogProps(),
-        autoCompleteProps = const CupertinoAutocompleteProps(),
-        super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
+  }) : menuProps = const CupertinoMenuProps(),
+       modalBottomSheetProps = const CupertinoModalBottomSheetProps(),
+       dialogProps = const CupertinoDialogProps(),
+       autoCompleteProps = const CupertinoAutocompleteProps(),
+       super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
 }

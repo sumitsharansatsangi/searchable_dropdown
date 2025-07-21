@@ -97,6 +97,13 @@
 * #### Fix bugs:
   * `BottomSheet` background color [726](https://github.com/salim-lachdhaf/searchable_dropdown/issues/726)
 
+## [6.0.3] - 2025.05.09
+* #### New Feature:
+  * add `formKey` parameter to `DropdownSearch`, this new parameter allows to user to retrieve the `FormFieldState` of the internal `FormField`.
+
+## [6.0.2] - 2025.01.16
+* Fix lint errors
+
 ## [6.0.1] - 2024.09.21
 * #### New Feature:
   * add `Semantics` to searchBox to support voiceOver/TalkBack ...

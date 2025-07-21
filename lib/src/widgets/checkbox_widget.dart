@@ -67,12 +67,14 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
               widget.checkBox != null
                   ? widget.checkBox!(context, v == true)
                   : widget.uiToApply == UiToApply.cupertino
-                      ? CupertinoCheckbox(
-                          value: v,
-                          onChanged: widget.isDisabled ? null : (b) {})
-                      : Checkbox(
-                          value: v,
-                          onChanged: widget.isDisabled ? null : (b) {}),
+                  ? CupertinoCheckbox(
+                      value: v,
+                      onChanged: widget.isDisabled ? null : (b) {},
+                    )
+                  : Checkbox(
+                      value: v,
+                      onChanged: widget.isDisabled ? null : (b) {},
+                    ),
             ],
           );
 

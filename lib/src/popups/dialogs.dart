@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future openMaterialDialog(
-    BuildContext context, Widget content, DialogProps props) {
+  BuildContext context,
+  Widget content,
+  DialogProps props,
+) {
   return showGeneralDialog(
     context: context,
     barrierDismissible: props.barrierDismissible,
@@ -57,12 +60,15 @@ Future openAdaptiveDialog(
     case TargetPlatform.iOS:
     case TargetPlatform.macOS:
       return openCupertinoDialog(
-          context, content, props.cupertinoProps, defaultCupertinoActions);
+        context,
+        content,
+        props.cupertinoProps,
+        defaultCupertinoActions,
+      );
     case TargetPlatform.android:
     case TargetPlatform.fuchsia:
     case TargetPlatform.linux:
     case TargetPlatform.windows:
-    default:
       return openMaterialDialog(context, content, props.materialProps);
   }
 }

@@ -38,8 +38,9 @@ class _CupertinoModalsExamplesPageState
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar:
-          AppBar(title: Text("CupertinoDropdownSearch Modal BottomSheet Demo")),
+      appBar: AppBar(
+        title: Text("CupertinoDropdownSearch Modal BottomSheet Demo"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Form(
@@ -58,22 +59,22 @@ class _CupertinoModalsExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "Dialog with title",
-                            hintText: "Select an Int"),
+                          labelText: "Dialog with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: CupertinoPopupProps.modalBottomSheet(
                         title: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                          ),
+                          decoration: BoxDecoration(color: Colors.deepPurple),
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 16),
                           child: Text(
                             'Numbers 1..30',
                             style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70),
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white70,
+                            ),
                           ),
                         ),
                         modalBottomSheetProps: CupertinoModalBottomSheetProps(),
@@ -95,7 +96,7 @@ class _CupertinoModalsExamplesPageState
                         disabledItemFn: (int i) => i <= 3,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -131,17 +132,17 @@ class _CupertinoModalsExamplesPageState
                       compareFn: (i, s) => i.isEqual(s),
                       popupProps:
                           CupertinoMultiSelectionPopupProps.modalBottomSheet(
-                        showSearchBox: true,
-                        itemBuilder: userModelPopupItem,
-                        suggestionsProps: SuggestionsProps(
-                          showSuggestions: true,
-                          items: (us) {
-                            return us
-                                .where((e) => e.name.contains("Mrs"))
-                                .toList();
-                          },
-                        ),
-                      ),
+                            showSearchBox: true,
+                            itemBuilder: userModelPopupItem,
+                            suggestionsProps: SuggestionsProps(
+                              showSuggestions: true,
+                              items: (us) {
+                                return us
+                                    .where((e) => e.name.contains("Mrs"))
+                                    .toList();
+                              },
+                            ),
+                          ),
                     ),
                   ),
                 ],
@@ -216,20 +217,22 @@ class _CupertinoModalsExamplesPageState
                     child: CupertinoDropdownSearch<UserModel>.multiSelection(
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps:
                           CupertinoMultiSelectionPopupProps.modalBottomSheet(
-                        showSelectedItems: true,
-                        itemBuilder: userModelPopupItem,
-                        showSearchBox: true,
-                        searchFieldProps: CupertinoTextFieldProps(
-                          controller: _userEditTextController,
-                          suffix: IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () => _userEditTextController.clear(),
+                            showSelectedItems: true,
+                            itemBuilder: userModelPopupItem,
+                            showSearchBox: true,
+                            searchFieldProps: CupertinoTextFieldProps(
+                              controller: _userEditTextController,
+                              suffix: IconButton(
+                                icon: Icon(Icons.clear),
+                                onPressed: () =>
+                                    _userEditTextController.clear(),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
                       compareFn: (item, selectedItem) =>
                           item.id == selectedItem.id,
                       decoratorProps: DropDownDecoratorProps(
@@ -237,8 +240,9 @@ class _CupertinoModalsExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -258,8 +262,9 @@ class _CupertinoModalsExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -278,29 +283,29 @@ class _CupertinoModalsExamplesPageState
                 popupProps: CupertinoPopupProps.modalBottomSheet(
                   showSelectedItems: true,
                   interceptCallBacks: true, //important line
-                  itemBuilder: (ctx, item, isDisabled, isSelected) {
+                  itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
                     return ListTile(
                       selected: isSelected,
                       title: Text(item.level1),
                       trailing: item.subLevel.isEmpty
                           ? null
                           : (item.isExpanded
-                              ? IconButton(
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.arrow_right),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )),
+                                ? IconButton(
+                                    icon: Icon(Icons.arrow_drop_down),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )),
                       subtitle: item.subLevel.isNotEmpty && item.isExpanded
                           ? Container(
                               height: item.subLevel.length * 50,
@@ -308,7 +313,8 @@ class _CupertinoModalsExamplesPageState
                                 children: item.subLevel
                                     .map(
                                       (e) => ListTile(
-                                        selected: _dropdownMultiLevelKey
+                                        selected:
+                                            _dropdownMultiLevelKey
                                                 .currentState
                                                 ?.getSelectedItem
                                                 ?.level1 ==

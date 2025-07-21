@@ -74,7 +74,9 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                   popupProps: PopupProps.menu(
-                      fit: FlexFit.loose, constraints: BoxConstraints()),
+                    fit: FlexFit.loose,
+                    constraints: BoxConstraints(),
+                  ),
                 ),
               ),
               Padding(padding: EdgeInsets.only(right: 16)),
@@ -92,7 +94,9 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                   popupProps: PopupProps.menu(
-                      fit: FlexFit.loose, constraints: BoxConstraints()),
+                    fit: FlexFit.loose,
+                    constraints: BoxConstraints(),
+                  ),
                 ),
               ),
               Padding(padding: EdgeInsets.only(right: 16)),
@@ -104,106 +108,127 @@ class MyHomePage extends StatelessWidget {
                     case PopupMode.menu:
                       if (uiMode == UiMode.adaptive) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AdaptiveMenuExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AdaptiveMenuExamplesPage(),
+                          ),
+                        );
                       } else if (uiMode == UiMode.cupertino) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CupertinoMenuExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CupertinoMenuExamplesPage(),
+                          ),
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MaterialMenuExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MaterialMenuExamplesPage(),
+                          ),
+                        );
                       }
                       break;
                     case PopupMode.modalBottomSheet:
                       if (uiMode == UiMode.adaptive) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AdaptiveModalsExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AdaptiveModalsExamplesPage(),
+                          ),
+                        );
                       } else if (uiMode == UiMode.cupertino) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CupertinoModalsExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CupertinoModalsExamplesPage(),
+                          ),
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MaterialModalsExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MaterialModalsExamplesPage(),
+                          ),
+                        );
                       }
                       break;
                     case PopupMode.bottomSheet:
                       if (uiMode == UiMode.adaptive) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AdaptiveBottomSheetExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AdaptiveBottomSheetExamplesPage(),
+                          ),
+                        );
                       } else if (uiMode == UiMode.cupertino) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CupertinoBottomSheetExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CupertinoBottomSheetExamplesPage(),
+                          ),
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MaterialBottomSheetExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MaterialBottomSheetExamplesPage(),
+                          ),
+                        );
                       }
                       break;
                     case PopupMode.dialog:
                       if (uiMode == UiMode.adaptive) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AdaptiveDialogExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AdaptiveDialogExamplesPage(),
+                          ),
+                        );
                       } else if (uiMode == UiMode.cupertino) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CupertinoDialogExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CupertinoDialogExamplesPage(),
+                          ),
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MaterialDialogExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MaterialDialogExamplesPage(),
+                          ),
+                        );
                       }
                       break;
                     case PopupMode.autocomplete:
                       if (uiMode == UiMode.adaptive) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AdaptiveAutocompleteExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AdaptiveAutocompleteExamplesPage(),
+                          ),
+                        );
                       } else if (uiMode == UiMode.cupertino) {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CupertinoAutocompleteExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CupertinoAutocompleteExamplesPage(),
+                          ),
+                        );
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MaterialAutocompleteExamplesPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MaterialAutocompleteExamplesPage(),
+                          ),
+                        );
                       }
                       break;
                     case null:
@@ -211,7 +236,7 @@ class MyHomePage extends StatelessWidget {
                   }
                 },
                 child: Text("Go"),
-              )
+              ),
             ],
           ),
           Padding(padding: EdgeInsets.all(8)),
@@ -221,15 +246,18 @@ class MyHomePage extends StatelessWidget {
               children: [
                 TextSpan(text: 'we used '),
                 TextSpan(
-                    text: 'fit: FlexFit.loose',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                  text: 'fit: FlexFit.loose',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 TextSpan(text: ' and '),
                 TextSpan(
-                    text: 'constraints: BoxConstraints() ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                  text: 'constraints: BoxConstraints() ',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 TextSpan(
-                    text:
-                        'to fit the height of menu automatically to the length of items'),
+                  text:
+                      'to fit the height of menu automatically to the length of items',
+                ),
               ],
             ),
           ),
@@ -237,11 +265,16 @@ class MyHomePage extends StatelessWidget {
           Text(
             'DropdownSearch Anatomy',
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+            ),
             textAlign: TextAlign.center,
           ),
-          Image.asset('assets/images/anatomy.png',
-              alignment: Alignment.topCenter, height: 1024)
+          Image.asset(
+            'assets/images/anatomy.png',
+            alignment: Alignment.topCenter,
+            height: 1024,
+          ),
         ],
       ),
     );

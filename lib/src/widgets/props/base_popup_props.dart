@@ -142,7 +142,7 @@ abstract class BasePopupProps<T> {
     this.validationBuilder,
     this.textDirection = TextDirection.ltr,
   }) : assert(
-          !cacheItems || !disableFilter,
-          'Caching items will be unuseful if the local filter disableFilter is disabled ',
-        );
+         !cacheItems || !disableFilter,
+         'Caching items will be unuseful if the local filter disableFilter is disabled ',
+       );
 }

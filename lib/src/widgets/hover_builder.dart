@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HoverBuilder extends StatefulWidget {
-  const HoverBuilder({
-    required this.builder,
-    super.key,
-  });
+  const HoverBuilder({required this.builder, super.key});
 
   final Widget Function(BuildContext context, bool isHovered) builder;
 

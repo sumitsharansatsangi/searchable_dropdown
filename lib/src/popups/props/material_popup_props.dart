@@ -56,11 +56,11 @@ class MultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        dialogProps = const DialogProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       dialogProps = const DialogProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
 
   const MultiSelectionPopupProps.autocomplete({
     this.autoCompleteProps = const AutocompleteProps(),
@@ -93,11 +93,11 @@ class MultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        dialogProps = const DialogProps(),
-        menuProps = const MenuProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       dialogProps = const DialogProps(),
+       menuProps = const MenuProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
 
   const MultiSelectionPopupProps.dialog({
     this.dialogProps = const DialogProps(),
@@ -134,11 +134,11 @@ class MultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        menuProps = const MenuProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       menuProps = const MenuProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
 
   const MultiSelectionPopupProps.bottomSheet({
     this.bottomSheetProps = const BottomSheetProps(),
@@ -171,11 +171,11 @@ class MultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : menuProps = const MenuProps(),
-        dialogProps = const DialogProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
+  }) : menuProps = const MenuProps(),
+       dialogProps = const DialogProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
 
   const MultiSelectionPopupProps.modalBottomSheet({
     this.modalBottomSheetProps = const ModalBottomSheetProps(),
@@ -208,13 +208,14 @@ class MultiSelectionPopupProps<T> extends BasePopupProps<T> {
     super.checkBoxBuilder,
     super.validationBuilder,
     super.textDirection = TextDirection.ltr,
-  })  : menuProps = const MenuProps(),
-        bottomSheetProps = const BottomSheetProps(),
-        dialogProps = const DialogProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        super(
-            mode: PopupMode.modalBottomSheet,
-            searchFieldProps: searchFieldProps);
+  }) : menuProps = const MenuProps(),
+       bottomSheetProps = const BottomSheetProps(),
+       dialogProps = const DialogProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       super(
+         mode: PopupMode.modalBottomSheet,
+         searchFieldProps: searchFieldProps,
+       );
 }
 
 class PopupProps<T> extends BasePopupProps<T> {
@@ -259,11 +260,11 @@ class PopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        dialogProps = const DialogProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       dialogProps = const DialogProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.menu, searchFieldProps: searchFieldProps);
 
   const PopupProps.autocomplete({
     this.autoCompleteProps = const AutocompleteProps(),
@@ -290,11 +291,11 @@ class PopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        dialogProps = const DialogProps(),
-        menuProps = const MenuProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       dialogProps = const DialogProps(),
+       menuProps = const MenuProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.autocomplete, searchFieldProps: searchFieldProps);
 
   const PopupProps.dialog({
     this.dialogProps = const DialogProps(),
@@ -325,11 +326,11 @@ class PopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : bottomSheetProps = const BottomSheetProps(),
-        menuProps = const MenuProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
+  }) : bottomSheetProps = const BottomSheetProps(),
+       menuProps = const MenuProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       super(mode: PopupMode.dialog, searchFieldProps: searchFieldProps);
 
   const PopupProps.modalBottomSheet({
     this.modalBottomSheetProps = const ModalBottomSheetProps(),
@@ -356,13 +357,14 @@ class PopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : menuProps = const MenuProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        dialogProps = const DialogProps(),
-        bottomSheetProps = const BottomSheetProps(),
-        super(
-            mode: PopupMode.modalBottomSheet,
-            searchFieldProps: searchFieldProps);
+  }) : menuProps = const MenuProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       dialogProps = const DialogProps(),
+       bottomSheetProps = const BottomSheetProps(),
+       super(
+         mode: PopupMode.modalBottomSheet,
+         searchFieldProps: searchFieldProps,
+       );
 
   const PopupProps.bottomSheet({
     this.bottomSheetProps = const BottomSheetProps(),
@@ -389,9 +391,9 @@ class PopupProps<T> extends BasePopupProps<T> {
     super.interceptCallBacks,
     super.infiniteScrollProps,
     super.onItemsLoaded,
-  })  : menuProps = const MenuProps(),
-        autoCompleteProps = const AutocompleteProps(),
-        modalBottomSheetProps = const ModalBottomSheetProps(),
-        dialogProps = const DialogProps(),
-        super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
+  }) : menuProps = const MenuProps(),
+       autoCompleteProps = const AutocompleteProps(),
+       modalBottomSheetProps = const ModalBottomSheetProps(),
+       dialogProps = const DialogProps(),
+       super(mode: PopupMode.bottomSheet, searchFieldProps: searchFieldProps);
 }

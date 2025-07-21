@@ -42,17 +42,18 @@ class _MaterialAutocompleteExamplesPageState
                         'Thursday',
                         'Friday',
                         'Saturday',
-                        'Sunday'
+                        'Sunday',
                       ],
                       popupProps: MultiSelectionPopupProps.autocomplete(
-                        autoCompleteProps:
-                            AutocompleteProps(groupId: UniqueKey()),
+                        autoCompleteProps: AutocompleteProps(
+                          groupId: UniqueKey(),
+                        ),
                         disabledItemFn: (item) => item == 'Tuesday',
                       ),
                       dropdownBuilder: (ctx, selectedItems) =>
                           selectedItems.isEmpty
-                              ? SizedBox.shrink()
-                              : Text('$selectedItems'),
+                          ? SizedBox.shrink()
+                          : Text('$selectedItems'),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(right: 16)),
@@ -68,25 +69,34 @@ class _MaterialAutocompleteExamplesPageState
                       itemAsString: (item) => item.name,
                       popupProps: PopupProps.autocomplete(
                         autoCompleteProps: AutocompleteProps(
-                            align: MenuAlign.bottomCenter,
-                            groupId: UniqueKey()),
+                          align: MenuAlign.bottomCenter,
+                          groupId: UniqueKey(),
+                        ),
                         constraints: BoxConstraints(minWidth: 128),
                         fit: FlexFit.loose,
-                        itemBuilder: (context, item, isDisabled, isSelected) =>
-                            Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(item.name,
-                              style:
-                                  TextStyle(color: item.color, fontSize: 16)),
-                        ),
+                        itemBuilder:
+                            (context, item, isDisabled, isSelected, onTap) =>
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    item.name,
+                                    style: TextStyle(
+                                      color: item.color,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
                       ),
                       dropdownBuilder: (ctx, selectedItem) {
                         if (selectedItem == null) return SizedBox.shrink();
                         return Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.face,
-                                color: selectedItem.color, size: 54),
+                            Icon(
+                              Icons.face,
+                              color: selectedItem.color,
+                              size: 54,
+                            ),
                             Text(selectedItem.name),
                           ],
                         );
@@ -104,11 +114,27 @@ class _MaterialAutocompleteExamplesPageState
                   Expanded(
                     child: DropdownSearch<int>(
                       popupProps: PopupProps.autocomplete(
-                        autoCompleteProps:
-                            AutocompleteProps(groupId: UniqueKey()),
+                        autoCompleteProps: AutocompleteProps(
+                          groupId: UniqueKey(),
+                        ),
                       ),
-                      items: (f, cs) =>
-                          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                      items: (f, cs) => [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        13,
+                        14,
+                        15,
+                      ],
                     ),
                   ),
                   Padding(padding: EdgeInsets.all(4)),
@@ -117,12 +143,14 @@ class _MaterialAutocompleteExamplesPageState
                       height: 50,
                       child: DropdownSearch<int>.multiSelection(
                         popupProps: MultiSelectionPopupProps.autocomplete(
-                          autoCompleteProps:
-                              AutocompleteProps(groupId: UniqueKey()),
+                          autoCompleteProps: AutocompleteProps(
+                            groupId: UniqueKey(),
+                          ),
                         ),
                         items: (f, cs) => List.generate(50, (i) => i),
-                        selectedItemsScrollProps:
-                            ScrollProps(scrollDirection: Axis.horizontal),
+                        selectedItemsScrollProps: ScrollProps(
+                          scrollDirection: Axis.horizontal,
+                        ),
                       ),
                     ),
                   ),
@@ -137,7 +165,8 @@ class _MaterialAutocompleteExamplesPageState
                     child: DropdownSearch<UserModel>(
                       items: (f, cs) => getData(f),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       compareFn: (item, selectedItem) =>
                           item.id == selectedItem.id,
                       dropdownBuilder: (context, selectedItem) {
@@ -148,8 +177,9 @@ class _MaterialAutocompleteExamplesPageState
                         return ListTile(
                           contentPadding: EdgeInsets.only(left: 0),
                           leading: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              child: Text(selectedItem.name[0])),
+                            backgroundColor: Colors.blue,
+                            child: Text(selectedItem.name[0]),
+                          ),
                           title: Text(selectedItem.name),
                         );
                       },
@@ -160,15 +190,17 @@ class _MaterialAutocompleteExamplesPageState
                           groupId: UniqueKey(),
                         ),
                         showSelectedItems: true,
-                        itemBuilder: (ctx, item, isDisabled, isSelected) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                                backgroundColor: Colors.blue,
-                                child: Text(item.name[0])),
-                            selected: isSelected,
-                            title: Text(item.name),
-                          );
-                        },
+                        itemBuilder:
+                            (ctx, item, isDisabled, isSelected, onTap) {
+                              return ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Colors.blue,
+                                  child: Text(item.name[0]),
+                                ),
+                                selected: isSelected,
+                                title: Text(item.name),
+                              );
+                            },
                       ),
                     ),
                   ),
@@ -193,18 +225,24 @@ class _MaterialAutocompleteExamplesPageState
                     Padding(padding: EdgeInsets.all(8)),
                     DropdownSearch<IconStringModel>(
                       selectedItem: IconStringModel(
-                          icon: Icons.person, name: 'Your Profile'),
+                        icon: Icons.person,
+                        name: 'Your Profile',
+                      ),
                       compareFn: (item1, item2) => item1.icon == item2.icon,
                       items: (f, cs) => [
                         IconStringModel(
-                            icon: Icons.person, name: 'Your Profile'),
+                          icon: Icons.person,
+                          name: 'Your Profile',
+                        ),
                         IconStringModel(icon: Icons.settings, name: 'Setting'),
                         IconStringModel(
-                            icon: Icons.lock_open_rounded,
-                            name: 'Change Password'),
+                          icon: Icons.lock_open_rounded,
+                          name: 'Change Password',
+                        ),
                         IconStringModel(
-                            icon: Icons.power_settings_new_rounded,
-                            name: 'Logout'),
+                          icon: Icons.power_settings_new_rounded,
+                          name: 'Logout',
+                        ),
                       ],
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
@@ -227,35 +265,46 @@ class _MaterialAutocompleteExamplesPageState
                       ),
                       dropdownBuilder: (context, selectedItem) {
                         if (selectedItem == null) return SizedBox.shrink();
-                        return Row(mainAxisSize: MainAxisSize.min, children: [
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Icon(selectedItem.icon, color: Colors.white),
-                          ),
-                          Text(
-                            selectedItem.name,
-                            style: TextStyle(
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Icon(
+                                selectedItem.icon,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              selectedItem.name,
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ]);
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        );
                       },
                       popupProps: PopupProps.autocomplete(
-                        itemBuilder: (context, item, isDisabled, isSelected) {
-                          return ListTile(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 12),
-                            leading: Icon(item.icon, color: Colors.white),
-                            title: Text(
-                              item.name,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          );
-                        },
+                        itemBuilder:
+                            (context, item, isDisabled, isSelected, onTap) {
+                              return ListTile(
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 12,
+                                ),
+                                leading: Icon(item.icon, color: Colors.white),
+                                title: Text(
+                                  item.name,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              );
+                            },
                         fit: FlexFit.loose,
                         autoCompleteProps: AutocompleteProps(
                           groupId: UniqueKey(),
@@ -294,8 +343,11 @@ class _MaterialAutocompleteExamplesPageState
                     ),
                     Padding(padding: EdgeInsets.only(top: 32)),
                     DropdownSearch<String>(
-                      items: (filter, infiniteScrollProps) =>
-                          ['Item 1', 'Item 2', 'Item 3'],
+                      items: (filter, infiniteScrollProps) => [
+                        'Item 1',
+                        'Item 2',
+                        'Item 3',
+                      ],
                       suffixProps: DropdownSuffixProps(
                         dropdownButtonProps: DropdownButtonProps(
                           iconClosed: Icon(Icons.keyboard_arrow_down),
@@ -305,8 +357,10 @@ class _MaterialAutocompleteExamplesPageState
                       decoratorProps: DropDownDecoratorProps(
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 8,
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
@@ -323,9 +377,10 @@ class _MaterialAutocompleteExamplesPageState
                           ),
                           hintText: 'Please select...',
                           hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.grey),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                       dropdownBuilder: (context, selectedItem) {
@@ -335,31 +390,40 @@ class _MaterialAutocompleteExamplesPageState
                         );
                       },
                       popupProps: PopupProps.autocomplete(
-                        itemBuilder: (context, item, isDisabled, isSelected) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            child: Text(
-                              item,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                              textAlign: TextAlign.center,
-                            ),
-                          );
-                        },
+                        itemBuilder:
+                            (context, item, isDisabled, isSelected, onTap) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12.0,
+                                ),
+                                child: Text(
+                                  item,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            },
                         fit: FlexFit.loose,
                         autoCompleteProps: AutocompleteProps(
                           groupId: UniqueKey(),
                           margin: EdgeInsets.only(top: 12),
                           shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
                         ),
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(top: 32)),
                     DropdownSearch<String>(
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
                           labelText: 'Bottom Left Menu',
@@ -370,7 +434,9 @@ class _MaterialAutocompleteExamplesPageState
                       popupProps: PopupProps.autocomplete(
                         constraints: BoxConstraints.tight(Size(250, 250)),
                         autoCompleteProps: AutocompleteProps(
-                            align: MenuAlign.bottomStart, groupId: UniqueKey()),
+                          align: MenuAlign.bottomStart,
+                          groupId: UniqueKey(),
+                        ),
                       ),
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -382,13 +448,18 @@ class _MaterialAutocompleteExamplesPageState
                           contentPadding: EdgeInsets.only(left: 12, right: 12),
                         ),
                       ),
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       popupProps: PopupProps.autocomplete(
                         constraints: BoxConstraints.tight(Size(250, 250)),
                         autoCompleteProps: AutocompleteProps(
-                            align: MenuAlign.bottomCenter,
-                            groupId: UniqueKey()),
+                          align: MenuAlign.bottomCenter,
+                          groupId: UniqueKey(),
+                        ),
                       ),
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -400,12 +471,18 @@ class _MaterialAutocompleteExamplesPageState
                           contentPadding: EdgeInsets.only(left: 12, right: 12),
                         ),
                       ),
-                      items: (filter, loadProps) =>
-                          ["Item 1", "Item 2", "Item 3", "Item 4"],
+                      items: (filter, loadProps) => [
+                        "Item 1",
+                        "Item 2",
+                        "Item 3",
+                        "Item 4",
+                      ],
                       popupProps: PopupProps.autocomplete(
                         constraints: BoxConstraints.tight(Size(250, 250)),
                         autoCompleteProps: AutocompleteProps(
-                            align: MenuAlign.topEnd, groupId: UniqueKey()),
+                          align: MenuAlign.topEnd,
+                          groupId: UniqueKey(),
+                        ),
                       ),
                     ),
                   ],
@@ -423,8 +500,9 @@ class _MaterialAutocompleteExamplesPageState
                       items: (f, cs) => [1, 2, 3, 4, 5, 6, 7],
                       autoValidateMode: AutovalidateMode.onUserInteraction,
                       popupProps: PopupProps.autocomplete(
-                        autoCompleteProps:
-                            AutocompleteProps(groupId: UniqueKey()),
+                        autoCompleteProps: AutocompleteProps(
+                          groupId: UniqueKey(),
+                        ),
                       ),
                       validator: (int? i) {
                         if (i == null) {
@@ -435,15 +513,17 @@ class _MaterialAutocompleteExamplesPageState
                         return null;
                       },
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                     ),
                   ),
                   Padding(padding: EdgeInsets.all(4)),
                   Expanded(
                     child: DropdownSearch<int>.multiSelection(
                       popupProps: MultiSelectionPopupProps.autocomplete(
-                        autoCompleteProps:
-                            AutocompleteProps(groupId: UniqueKey()),
+                        autoCompleteProps: AutocompleteProps(
+                          groupId: UniqueKey(),
+                        ),
                       ),
                       items: (f, cs) => [1, 2, 3, 4, 5, 6, 7],
                       validator: (List<int>? items) {

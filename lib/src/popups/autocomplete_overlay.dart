@@ -26,8 +26,9 @@ abstract class CustomOverlayEntry {
     Overlay.of(context).insert(overlayEntry!);
 
     //add screen size change listener
-    WidgetsBinding.instance
-        .addObserver(CustomWidgetsBindingObserver(overlayEntry!));
+    WidgetsBinding.instance.addObserver(
+      CustomWidgetsBindingObserver(overlayEntry!),
+    );
 
     await completer?.future;
   }
@@ -36,15 +37,19 @@ abstract class CustomOverlayEntry {
 
   ///return overlay position based on different params such, constrains, alignment and screen size
   RelativeRect getOverlayPosition(
-      BuildContext pContext, MenuAlign? pAlign, BoxConstraints pConstraints) {
+    BuildContext pContext,
+    MenuAlign? pAlign,
+    BoxConstraints pConstraints,
+  ) {
     final dropdownBox = pContext.findRenderObject() as RenderBox;
     final overlayBox =
         Overlay.of(pContext).context.findRenderObject() as RenderBox;
     var popupSize = computePopupSize(dropdownBox, overlayBox, pConstraints);
     var lAlign = pAlign ?? MenuAlign.bottomCenter;
 
-    final dropDownY =
-        dropdownBox.localToGlobal(Offset.zero, ancestor: overlayBox).dy;
+    final dropDownY = dropdownBox
+        .localToGlobal(Offset.zero, ancestor: overlayBox)
+        .dy;
     final bottomHeight =
         overlayBox.size.height - dropDownY - dropdownBox.size.height;
     final topHeight = dropDownY;
@@ -98,46 +103,56 @@ class MaterialCustomOverlyEntry extends CustomOverlayEntry {
   final TapRegionCallback? onTapOutside;
   final Widget? child;
 
-  MaterialCustomOverlyEntry(
-      {required this.props,
-      required this.constraints,
-      this.child,
-      this.onTapOutside});
+  MaterialCustomOverlyEntry({
+    required this.props,
+    required this.constraints,
+    this.child,
+    this.onTapOutside,
+  });
 
   @override
   getOverlayEntry(BuildContext context) {
-    return OverlayEntry(builder: (ctx) {
-      final pos = getOverlayPosition(context, props.align, constraints)
-          .addMargin(props.margin);
-      return Positioned(
-        top: pos.top,
-        left: pos.left,
-        right: pos.right,
-        bottom: pos.bottom,
-        child: Container(
-          constraints: constraints,
-          child: TapRegion(
-            groupId: props.groupId,
-            onTapOutside: onTapOutside,
-            child: Material(
-              type: MaterialType.card,
-              shape: props.shape ?? PopupMenuTheme.of(context).shape,
-              color: props.color ?? PopupMenuTheme.of(context).surfaceTintColor,
-              elevation:
-                  props.elevation ?? PopupMenuTheme.of(context).elevation ?? 4,
-              shadowColor:
-                  props.shadowColor ?? PopupMenuTheme.of(context).shadowColor,
-              surfaceTintColor: props.surfaceTintColor ??
-                  PopupMenuTheme.of(context).surfaceTintColor,
-              clipBehavior: props.clipBehavior,
-              borderRadius: props.borderRadius,
-              borderOnForeground: props.borderOnForeground,
-              child: child,
+    return OverlayEntry(
+      builder: (ctx) {
+        final pos = getOverlayPosition(
+          context,
+          props.align,
+          constraints,
+        ).addMargin(props.margin);
+        return Positioned(
+          top: pos.top,
+          left: pos.left,
+          right: pos.right,
+          bottom: pos.bottom,
+          child: Container(
+            constraints: constraints,
+            child: TapRegion(
+              groupId: props.groupId,
+              onTapOutside: onTapOutside,
+              child: Material(
+                type: MaterialType.card,
+                shape: props.shape ?? PopupMenuTheme.of(context).shape,
+                color:
+                    props.color ?? PopupMenuTheme.of(context).surfaceTintColor,
+                elevation:
+                    props.elevation ??
+                    PopupMenuTheme.of(context).elevation ??
+                    4,
+                shadowColor:
+                    props.shadowColor ?? PopupMenuTheme.of(context).shadowColor,
+                surfaceTintColor:
+                    props.surfaceTintColor ??
+                    PopupMenuTheme.of(context).surfaceTintColor,
+                clipBehavior: props.clipBehavior,
+                borderRadius: props.borderRadius,
+                borderOnForeground: props.borderOnForeground,
+                child: child,
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
 
@@ -147,43 +162,51 @@ class CupertinoCustomOverlyEntry extends CustomOverlayEntry {
   final BoxConstraints constraints;
   final Widget? child;
 
-  CupertinoCustomOverlyEntry(
-      {required this.props,
-      required this.constraints,
-      this.child,
-      this.onTapOutside});
+  CupertinoCustomOverlyEntry({
+    required this.props,
+    required this.constraints,
+    this.child,
+    this.onTapOutside,
+  });
 
   @override
   OverlayEntry getOverlayEntry(BuildContext context) {
-    return OverlayEntry(builder: (ctx) {
-      final pos = getOverlayPosition(context, props.align, constraints)
-          .addMargin(props.margin);
-      return Positioned(
-        top: pos.top,
-        left: pos.left,
-        right: pos.right,
-        bottom: pos.bottom,
-        child: Container(
-          constraints: constraints,
-          child: TapRegion(
-            groupId: props.groupId,
-            onTapOutside: onTapOutside,
-            child: Material(
-              type: MaterialType.card,
-              shape: props.shape ?? PopupMenuTheme.of(context).shape,
-              elevation:
-                  props.elevation ?? PopupMenuTheme.of(context).elevation ?? 8,
-              color: props.color ?? PopupMenuTheme.of(context).color,
-              clipBehavior: props.clipBehavior,
-              borderRadius: props.borderRadius,
-              shadowColor: props.shadowColor,
-              borderOnForeground: props.borderOnForeground,
-              surfaceTintColor: props.surfaceTintColor,
-              child: child,
+    return OverlayEntry(
+      builder: (ctx) {
+        final pos = getOverlayPosition(
+          context,
+          props.align,
+          constraints,
+        ).addMargin(props.margin);
+        return Positioned(
+          top: pos.top,
+          left: pos.left,
+          right: pos.right,
+          bottom: pos.bottom,
+          child: Container(
+            constraints: constraints,
+            child: TapRegion(
+              groupId: props.groupId,
+              onTapOutside: onTapOutside,
+              child: Material(
+                type: MaterialType.card,
+                shape: props.shape ?? PopupMenuTheme.of(context).shape,
+                elevation:
+                    props.elevation ??
+                    PopupMenuTheme.of(context).elevation ??
+                    8,
+                color: props.color ?? PopupMenuTheme.of(context).color,
+                clipBehavior: props.clipBehavior,
+                borderRadius: props.borderRadius,
+                shadowColor: props.shadowColor,
+                borderOnForeground: props.borderOnForeground,
+                surfaceTintColor: props.surfaceTintColor,
+                child: child,
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

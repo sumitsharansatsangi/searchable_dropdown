@@ -4,7 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future openMaterialBottomSheet(
-    BuildContext context, Widget content, BottomSheetProps props) {
+  BuildContext context,
+  Widget content,
+  BottomSheetProps props,
+) {
   return showBottomSheet(
     context: context,
     showDragHandle: props.showDragHandle,
@@ -21,7 +24,10 @@ Future openMaterialBottomSheet(
 }
 
 Future openAdaptiveBottomSheet(
-    BuildContext context, Widget content, AdaptiveBottomSheetProps props) {
+  BuildContext context,
+  Widget content,
+  AdaptiveBottomSheetProps props,
+) {
   final ThemeData theme = Theme.of(context);
   switch (theme.platform) {
     case TargetPlatform.iOS:
@@ -31,13 +37,15 @@ Future openAdaptiveBottomSheet(
     case TargetPlatform.fuchsia:
     case TargetPlatform.linux:
     case TargetPlatform.windows:
-    default:
       return openMaterialBottomSheet(context, content, props.materialProps);
   }
 }
 
 Future openCupertinoBottomSheet(
-    BuildContext context, Widget content, CupertinoBottomSheetProps props) {
+  BuildContext context,
+  Widget content,
+  CupertinoBottomSheetProps props,
+) {
   return showCupertinoModalPopup(
     context: context,
     anchorPoint: props.anchorPoint,
@@ -53,8 +61,9 @@ Future openCupertinoBottomSheet(
         child: CupertinoPopupSurface(
           isSurfacePainted: props.isSurfacePainted,
           child: Container(
-            margin:
-                EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(ctx).viewInsets.bottom,
+            ),
             child: content,
           ),
         ),

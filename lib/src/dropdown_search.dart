@@ -20,15 +20,16 @@ class DropdownSearch<T> extends BaseDropdownSearch<T> {
     super.compareFn,
     super.onBeforeChange,
     super.onBeforePopupOpening,
+    super.onFocusChange,
     //form properties
     super.onSaved,
     super.validator,
     super.decoratorProps,
   }) : super(
-          popupProps: popupProps,
-          uiMode: UiMode.material,
-          groupId: popupProps.autoCompleteProps.groupId,
-        );
+         popupProps: popupProps,
+         uiMode: UiMode.material,
+         groupId: popupProps.autoCompleteProps.groupId,
+       );
 
   DropdownSearch.multiSelection({
     MultiSelectionPopupProps<T> popupProps =
@@ -49,14 +50,15 @@ class DropdownSearch<T> extends BaseDropdownSearch<T> {
     super.onSelected,
     super.onBeforeChange,
     super.onBeforePopupOpening,
+    super.onFocusChange,
     super.dropdownBuilder,
     //form properties
     super.onSaved,
     super.validator,
     super.decoratorProps,
   }) : super.multiSelection(
-          popupProps: popupProps,
-          uiMode: UiMode.material,
-          groupId: popupProps.autoCompleteProps.groupId,
-        );
+         popupProps: popupProps,
+         uiMode: UiMode.material,
+         groupId: popupProps.autoCompleteProps.groupId,
+       );
 }

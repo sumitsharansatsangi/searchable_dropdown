@@ -5,8 +5,5 @@ abstract class BaseTextFieldProps {
   final TextEditingController? controller;
   final ContainerBuilder? containerBuilder;
 
-  const BaseTextFieldProps({
-    this.controller,
-    this.containerBuilder,
-  });
+  const BaseTextFieldProps({this.controller, this.containerBuilder});
 }

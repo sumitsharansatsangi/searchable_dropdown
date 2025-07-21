@@ -66,14 +66,16 @@ class MenuProps {
   final SingleChildLayoutDelegate Function(
     BuildContext context,
     RelativeRect position,
-  )? layoutDelegate;
+  )?
+  layoutDelegate;
 
   const MenuProps({
     this.align,
     this.barrierLabel,
     this.elevation,
     this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0))),
+      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    ),
     this.positionCallback,
     this.barrierColor,
     this.backgroundColor,
@@ -123,14 +125,16 @@ class CupertinoMenuProps {
   final SingleChildLayoutDelegate Function(
     BuildContext context,
     RelativeRect position,
-  )? layoutDelegate;
+  )?
+  layoutDelegate;
 
   const CupertinoMenuProps({
     this.align,
     this.barrierLabel,
     this.elevation,
     this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12))),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
     this.positionCallback,
     this.barrierColor,
     this.backgroundColor,

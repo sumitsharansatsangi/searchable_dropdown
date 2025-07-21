@@ -21,7 +21,8 @@ class AutocompleteProps {
     this.align,
     this.elevation = 4,
     this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0))),
+      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    ),
     this.positionCallback,
     this.clipBehavior = Clip.none,
     this.borderOnForeground = false,
@@ -51,7 +52,8 @@ class CupertinoAutocompleteProps<T> {
     this.align,
     this.elevation = 8,
     this.shape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12))),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
     this.positionCallback,
     this.clipBehavior = Clip.none,
     this.borderOnForeground = false,

@@ -57,21 +57,22 @@ class _MaterialModalsExamplesPageState
                       items: (f, cs) => List.generate(30, (i) => i + 1),
                       decoratorProps: DropDownDecoratorProps(
                         decoration: InputDecoration(
-                            labelText: "with title", hintText: "Select an Int"),
+                          labelText: "with title",
+                          hintText: "Select an Int",
+                        ),
                       ),
                       popupProps: PopupProps.modalBottomSheet(
                         title: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple,
-                          ),
+                          decoration: BoxDecoration(color: Colors.deepPurple),
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 16),
                           child: Text(
                             'Numbers 1..30',
                             style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70),
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white70,
+                            ),
                           ),
                         ),
                         //modalBottomSheetProps: ModalBottomSheetProps(),
@@ -93,7 +94,7 @@ class _MaterialModalsExamplesPageState
                         disabledItemFn: (int i) => i <= 3,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
 
@@ -213,7 +214,8 @@ class _MaterialModalsExamplesPageState
                     child: DropdownSearch<UserModel>.multiSelection(
                       items: (filter, t) => getData(filter),
                       suffixProps: DropdownSuffixProps(
-                          clearButtonProps: ClearButtonProps(isVisible: true)),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
+                      ),
                       popupProps: MultiSelectionPopupProps.modalBottomSheet(
                         showSelectedItems: true,
                         itemBuilder: userModelPopupItem,
@@ -229,8 +231,9 @@ class _MaterialModalsExamplesPageState
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelText: 'Users *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                       dropdownBuilder: customDropDownExampleMultiSelection,
@@ -250,8 +253,9 @@ class _MaterialModalsExamplesPageState
                         decoration: InputDecoration(
                           labelText: 'User *',
                           filled: true,
-                          fillColor:
-                              Theme.of(context).inputDecorationTheme.fillColor,
+                          fillColor: Theme.of(
+                            context,
+                          ).inputDecorationTheme.fillColor,
                         ),
                       ),
                     ),
@@ -270,29 +274,29 @@ class _MaterialModalsExamplesPageState
                 popupProps: PopupProps.modalBottomSheet(
                   showSelectedItems: true,
                   interceptCallBacks: true, //important line
-                  itemBuilder: (ctx, item, isDisabled, isSelected) {
+                  itemBuilder: (ctx, item, isDisabled, isSelected, onTap) {
                     return ListTile(
                       selected: isSelected,
                       title: Text(item.level1),
                       trailing: item.subLevel.isEmpty
                           ? null
                           : (item.isExpanded
-                              ? IconButton(
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.arrow_right),
-                                  onPressed: () {
-                                    item.isExpanded = !item.isExpanded;
-                                    _dropdownMultiLevelKey.currentState
-                                        ?.updatePopupState();
-                                  },
-                                )),
+                                ? IconButton(
+                                    icon: Icon(Icons.arrow_drop_down),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      item.isExpanded = !item.isExpanded;
+                                      _dropdownMultiLevelKey.currentState
+                                          ?.updatePopupState();
+                                    },
+                                  )),
                       subtitle: item.subLevel.isNotEmpty && item.isExpanded
                           ? Container(
                               height: item.subLevel.length * 50,
@@ -300,7 +304,8 @@ class _MaterialModalsExamplesPageState
                                 children: item.subLevel
                                     .map(
                                       (e) => ListTile(
-                                        selected: _dropdownMultiLevelKey
+                                        selected:
+                                            _dropdownMultiLevelKey
                                                 .currentState
                                                 ?.getSelectedItem
                                                 ?.level1 ==

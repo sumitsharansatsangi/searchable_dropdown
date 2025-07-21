@@ -29,8 +29,12 @@ abstract class CustomMenu<T> {
       return positionCallBack(dropdownBox, overlayBox).addMargin(margin);
     } else {
       var popupSize = computePopupSize(dropdownBox, overlayBox, constraints);
-      return getPosition(dropdownBox, overlayBox, popupSize, align)
-          .addMargin(margin);
+      return getPosition(
+        dropdownBox,
+        overlayBox,
+        popupSize,
+        align,
+      ).addMargin(margin);
     }
   }
 }
@@ -40,11 +44,12 @@ class MaterialCustomMenu<T> extends CustomMenu<T> {
   final Widget child;
   final BoxConstraints constraints;
 
-  MaterialCustomMenu(
-      {required super.context,
-      required this.props,
-      required this.constraints,
-      required this.child});
+  MaterialCustomMenu({
+    required super.context,
+    required this.props,
+    required this.constraints,
+    required this.child,
+  });
 
   @override
   Route<T> getRoute() {
@@ -62,11 +67,12 @@ class CupertinoCustomMenu<T> extends CustomMenu<T> {
   final Widget child;
   final BoxConstraints constraints;
 
-  CupertinoCustomMenu(
-      {required super.context,
-      required this.constraints,
-      required this.props,
-      required this.child});
+  CupertinoCustomMenu({
+    required super.context,
+    required this.constraints,
+    required this.props,
+    required this.child,
+  });
 
   @override
   Route<T> getRoute() {
@@ -110,19 +116,34 @@ class _MaterialPopupMenuRoute<T> extends PopupRoute<T> {
   String? get barrierLabel => menuProps.barrierLabel;
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     if (menuProps.transitionBuilder != null) {
       return menuProps.transitionBuilder!(
-          context, animation, secondaryAnimation, child);
+        context,
+        animation,
+        secondaryAnimation,
+        child,
+      );
     }
-    return super
-        .buildTransitions(context, animation, secondaryAnimation, child);
+    return super.buildTransitions(
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     final PopupMenuThemeData popupMenuTheme = PopupMenuTheme.of(context);
     final menu = Material(
       surfaceTintColor: menuProps.surfaceTintColor,
@@ -147,14 +168,13 @@ class _MaterialPopupMenuRoute<T> extends PopupRoute<T> {
       );
 
       return CustomSingleChildLayout(
-        delegate: menuProps.layoutDelegate?.call(
-              context,
-              position,
-            ) ??
+        delegate:
+            menuProps.layoutDelegate?.call(context, position) ??
             _PopupMenuRouteLayout(context, position),
         child: InheritedTheme.capture(
-                from: context, to: Navigator.of(context).context)
-            .wrap(menu),
+          from: context,
+          to: Navigator.of(context).context,
+        ).wrap(menu),
       );
     } catch (e) {
       navigator?.removeRoute(this);
@@ -194,19 +214,34 @@ class _CupertinoPopupMenuRoute<T> extends PopupRoute<T> {
   String? get barrierLabel => menuProps.barrierLabel;
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     if (menuProps.transitionBuilder != null) {
       return menuProps.transitionBuilder!(
-          context, animation, secondaryAnimation, child);
+        context,
+        animation,
+        secondaryAnimation,
+        child,
+      );
     }
-    return super
-        .buildTransitions(context, animation, secondaryAnimation, child);
+    return super.buildTransitions(
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     final PopupMenuThemeData popupMenuTheme = PopupMenuTheme.of(context);
     final menu = Material(
       surfaceTintColor: menuProps.surfaceTintColor,
@@ -230,14 +265,13 @@ class _CupertinoPopupMenuRoute<T> extends PopupRoute<T> {
         menuProps.margin,
       );
       return CustomSingleChildLayout(
-        delegate: menuProps.layoutDelegate?.call(
-              context,
-              position,
-            ) ??
+        delegate:
+            menuProps.layoutDelegate?.call(context, position) ??
             _PopupMenuRouteLayout(context, position),
         child: InheritedTheme.capture(
-                from: parentContext, to: Navigator.of(context).context)
-            .wrap(menu),
+          from: parentContext,
+          to: Navigator.of(context).context,
+        ).wrap(menu),
       );
     } catch (e) {
       navigator?.removeRoute(this);
@@ -252,10 +286,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
   final RelativeRect position;
   final BuildContext context;
 
-  const _PopupMenuRouteLayout(
-    this.context,
-    this.position,
-  );
+  const _PopupMenuRouteLayout(this.context, this.position);
 
   @override
   BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
@@ -269,9 +300,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
         constraints.minWidth - position.left - position.right,
         constraints.minHeight,
       ),
-    ).deflate(
-      EdgeInsets.only(top: keyBoardHeight) + safeArea,
-    );
+    ).deflate(EdgeInsets.only(top: keyBoardHeight) + safeArea);
   }
 
   @override

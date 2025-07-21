@@ -45,7 +45,9 @@ class SuggestionsWidget<T> extends StatelessWidget {
     final lItemProps = props.itemProps ?? SuggestedItemProps();
     if (lItemProps.containerBuilder != null) {
       return lItemProps.containerBuilder!(
-          context, suggestionsWidget(lItemProps, suggestedItems));
+        context,
+        suggestionsWidget(lItemProps, suggestedItems),
+      );
     }
 
     return Container(
@@ -56,7 +58,9 @@ class SuggestionsWidget<T> extends StatelessWidget {
   }
 
   Widget suggestionsWidget(
-      SuggestedItemProps lItemProps, List<T> suggestedItems) {
+    SuggestedItemProps lItemProps,
+    List<T> suggestedItems,
+  ) {
     return CustomSingleScrollView(
       scrollProps: lItemProps.scrollProps,
       child: CustomWrap(
@@ -67,14 +71,16 @@ class SuggestionsWidget<T> extends StatelessWidget {
           return CustomChip(
             label: Text(itemAsString(s)),
             props: ChipProps(
-              onPressed:
-                  onClick != null && isEnabled ? () => onClick!(s) : null,
+              onPressed: onClick != null && isEnabled
+                  ? () => onClick!(s)
+                  : null,
               isEnabled: isEnabled,
               selected: isSelected,
               showCheckmark: isSelected,
               shape: uiToApply == UiToApply.cupertino
                   ? RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(18)))
+                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                    )
                   : null,
             ).merge(lItemProps.chipProps),
           );

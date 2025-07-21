@@ -24,10 +24,10 @@ class SuggestionsProps<T> {
     this.showSuggestions = false,
     this.items,
   }) : assert(
-          builder == null || itemProps == null,
-          'Cannot provide both a builder and a itemProps. '
-          'builder is overriding the hole suggestion widget',
-        );
+         builder == null || itemProps == null,
+         'Cannot provide both a builder and a itemProps. '
+         'builder is overriding the hole suggestion widget',
+       );
 }
 
 class SuggestedItemProps<T> {

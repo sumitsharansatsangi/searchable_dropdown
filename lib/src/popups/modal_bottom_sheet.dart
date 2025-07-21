@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future openMaterialModalBottomSheet(
-    BuildContext context, Widget content, ModalBottomSheetProps props) {
+  BuildContext context,
+  Widget content,
+  ModalBottomSheetProps props,
+) {
   final sheetTheme = Theme.of(context).bottomSheetTheme;
   return showModalBottomSheet(
     context: context,
@@ -14,7 +17,8 @@ Future openMaterialModalBottomSheet(
     sheetAnimationStyle: props.sheetAnimationStyle,
     useSafeArea: props.useSafeArea,
     barrierColor: props.barrierColor,
-    backgroundColor: props.backgroundColor ??
+    backgroundColor:
+        props.backgroundColor ??
         sheetTheme.modalBackgroundColor ??
         sheetTheme.backgroundColor,
     isDismissible: props.barrierDismissible,
@@ -48,14 +52,20 @@ Future openAdaptiveModalBottomSheet(
     case TargetPlatform.iOS:
     case TargetPlatform.macOS:
       return openCupertinoModalBottomSheet(
-          context, content, props.cupertinoProps, defaultCupertinoActions);
+        context,
+        content,
+        props.cupertinoProps,
+        defaultCupertinoActions,
+      );
     case TargetPlatform.android:
     case TargetPlatform.fuchsia:
     case TargetPlatform.linux:
     case TargetPlatform.windows:
-    default:
       return openMaterialModalBottomSheet(
-          context, content, props.materialProps);
+        context,
+        content,
+        props.materialProps,
+      );
   }
 }
 
@@ -82,7 +92,8 @@ Future openCupertinoModalBottomSheet(
           title: props.title,
           actionScrollController: props.actionScrollController,
           actions: props.actions ?? defaultActions,
-          cancelButton: props.cancelButton ??
+          cancelButton:
+              props.cancelButton ??
               CupertinoActionSheetAction(
                 isDestructiveAction: true,
                 onPressed: () => Navigator.pop(context),
